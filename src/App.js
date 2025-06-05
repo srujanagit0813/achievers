@@ -3,6 +3,7 @@ import './App.css';
 import AnimatedVideoSlider from './components/AnimatedVideoSlider';
 import CourseDetails from './components/CourseDetails';
 import Landingpage from './components/Landingpage';
+import MaterialDetails from './components/MaterialDetails';
 import Navbar from './components/Navbar';
 import PerfectCourseSection from './components/PerfectCourseSection';
 import PopularSubjects from './components/PopularSubjects';
@@ -20,6 +21,7 @@ function App() {
         <Route path="/Landingpage" element={<Landingpage />} />
         
         <Route path="/course/:id" element={<CourseDetails />} />
+        <Route path="/materials/:id" element={<MaterialDetails />} />
        </Routes>
     </div>
   );

@@ -21,7 +21,7 @@ export const courseCategories = [
 
 export const courses = [
   {
-    category: "Art & Design",
+    category: "Computer Science",
     title: "Foundation course to understand about software",
     lessons: 23,
     duration: "1 hr 30 min",
@@ -30,10 +30,14 @@ export const courses = [
     free: true,
     author: "Micle Jhon",
     rating: 4.5,
+    video:"https://youtu.be/6DP7cMN99zQ?t=728",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_1.13280665.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
   },
   {
-    category: "Development",
+    category: "Data science",
     title: "Nidnies course to under stand about software",
     lessons: 29,
     duration: "2 hr 10 min",
@@ -42,10 +46,14 @@ export const courses = [
     free: true,
     author: "Rinis Jhon",
     rating: 4.5,
+    video:"https://youtu.be/ceV3RsG946s",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_2.b4b9a2fc.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
   },
   {
-    category: "Lifestyle",
+    category: "Engineering",
     title: "Minws course to under stand about solution",
     lessons: 25,
     duration: "1 hr 40 min",
@@ -54,10 +62,14 @@ export const courses = [
     free: true,
     author: "Jane Austen",
     rating: 4.2,
+    video:"https://youtu.be/SqcY0GlETPk",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_3.34a6552d.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
   },
   {
-    category: "Art$Design",
+    category: "Web Development",
     title: "big data to under stand about solution and software",
     lessons: 30,
     duration: "3 hr 40 min",
@@ -66,10 +78,14 @@ export const courses = [
     free: true,
     author: " Ge.orwell",
     rating: 4.2,
+    video:"https://youtu.be/JDJ0zQLvpOA?list=PLhnVDNT5zYN_PfPXedWpMy_UTeYNExbfR",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_6.1149718f.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
   },
   {
-    category: "Lifestyle",
+    category: "Architecture",
     title: "Minws course to under stand about solution",
     lessons: 25,
     duration: "1 hr 40 min",
@@ -78,10 +94,14 @@ export const courses = [
     free: true,
     author: "Jane Austen",
     rating: 4.2,
+    video:"https://youtu.be/NlQFSgvTaFw?list=PLhnVDNT5zYN_PfPXedWpMy_UTeYNExbfR",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_5.1cca53ab.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
   },
   {
-    category: "Lifestyle",
+    category: "Architecture",
     title: "Minws course to under stand about solution",
     lessons: 25,
     duration: "1 hr 40 min",
@@ -90,7 +110,108 @@ export const courses = [
     free: true,
     author: "Jane Austen",
     rating: 4.2,
+    video:"https://youtu.be/paG4rx4CB4s?list=PLhnVDNT5zYN_PfPXedWpMy_UTeYNExbfR",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_4.1f298d26.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
+  },
+
+  {
+    category: "Computer Science",
+    title: "Foundation course to understand about software",
+    lessons: 23,
+    duration: "1 hr 30 min",
+    price: 32,
+    oldPrice: 67,
+    free: true,
+    author: "Micle Jhon",
+    rating: 4.5,
+    video:"https://youtu.be/6DP7cMN99zQ?t=728",
+    image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_1.13280665.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
+  },
+  {
+    category: "Data science",
+    title: "Nidnies course to under stand about software",
+    lessons: 29,
+    duration: "2 hr 10 min",
+    price: 32,
+    oldPrice: 67,
+    free: true,
+    author: "Rinis Jhon",
+    rating: 4.5,
+    video:"https://youtu.be/ceV3RsG946s",
+    image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_2.b4b9a2fc.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
+  },
+  {
+    category: "Engineering",
+    title: "Minws course to under stand about solution",
+    lessons: 25,
+    duration: "1 hr 40 min",
+    price: 40,
+    oldPrice: 67,
+    free: true,
+    author: "Jane Austen",
+    rating: 4.2,
+    video:"https://youtu.be/SqcY0GlETPk",
+    image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_3.34a6552d.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
+  },
+  {
+    category: "Web Development",
+    title: "big data to under stand about solution and software",
+    lessons: 30,
+    duration: "3 hr 40 min",
+    price: 40,
+    oldPrice: 67,
+    free: true,
+    author: " Ge.orwell",
+    rating: 4.2,
+    video:"https://youtu.be/JDJ0zQLvpOA?list=PLhnVDNT5zYN_PfPXedWpMy_UTeYNExbfR",
+    image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_6.1149718f.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
+  },
+  {
+    category: "Architecture",
+    title: "Minws course to under stand about solution",
+    lessons: 25,
+    duration: "1 hr 40 min",
+    price: 40,
+    oldPrice: 67,
+    free: true,
+    author: "Jane Austen",
+    rating: 4.2,
+    video:"https://youtu.be/NlQFSgvTaFw?list=PLhnVDNT5zYN_PfPXedWpMy_UTeYNExbfR",
+    image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_5.1cca53ab.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
+  },
+  {
+    category: "Architecture",
+    title: "Minws course to under stand about solution",
+    lessons: 25,
+    duration: "1 hr 40 min",
+    price: 40,
+    oldPrice: 67,
+    free: true,
+    author: "Jane Austen",
+    rating: 4.2,
+    video:"https://youtu.be/paG4rx4CB4s?list=PLhnVDNT5zYN_PfPXedWpMy_UTeYNExbfR",
+    image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_4.1f298d26.png&w=750&q=75",
+    lastUpdated: "Sep 29, 2024",
+    description: "Learn the basics of React including hooks, components, state management and more."
+  
   },
 ];
 

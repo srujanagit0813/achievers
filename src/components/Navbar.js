@@ -15,7 +15,7 @@ import achievers from '../assets/logos/achievers.png'
 import { NavLink } from 'react-router-dom';
 const Navbar = () => {
   return (
-    <AppBar position="static" color="inherit" elevation={0}>
+    <AppBar position="fixed" color="inherit" elevation={0} >
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

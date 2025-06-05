@@ -55,7 +55,7 @@ const AnimatedVideoSlider = () => {
   };
 
   return (
-    <Box sx={{ maxWidth: '100%', overflow: 'hidden' }}>
+    <Box sx={{ maxWidth: '100%', overflow: 'hidden',mt:10 }}>
       <Slider {...settings}>
         {sliderData.map((item, index) => (
           <Box
