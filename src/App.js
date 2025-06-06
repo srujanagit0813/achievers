@@ -6,6 +6,8 @@ import Landingpage from './components/Landingpage';
 import Navbar from './components/Navbar';
 import PerfectCourseSection from './components/PerfectCourseSection';
 import PopularSubjects from './components/PopularSubjects';
+import DashboardPage from './components/admin/DashboardPage';
+import Dashboard from './components/admin/Dashboard';
 
 
 
@@ -13,7 +15,8 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-       
+      <DashboardPage/>
+       <Dashboard/>
       
         <Routes>
         <Route path="/" element={<Landingpage />} />
