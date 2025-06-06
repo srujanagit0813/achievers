@@ -8,6 +8,8 @@ import PerfectCourseSection from './components/PerfectCourseSection';
 import PopularSubjects from './components/PopularSubjects';
 import DashboardPage from './components/admin/DashboardPage';
 import Dashboard from './components/admin/Dashboard';
+import DashboardSection from './components/admin/DashboardSection';
+import NoticeBoardAndNotifications from './components/admin/NoticeBoardAndNotifications';
 
 
 
@@ -17,7 +19,8 @@ function App() {
       <Navbar/>
       <DashboardPage/>
        <Dashboard/>
-      
+      <DashboardSection/>
+      <NoticeBoardAndNotifications/>
         <Routes>
         <Route path="/" element={<Landingpage />} />
         <Route path="/Landingpage" element={<Landingpage />} />
