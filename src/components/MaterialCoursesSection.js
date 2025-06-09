@@ -10,7 +10,9 @@ import {
   CardActions,
   Button,
   Chip,
-  Rating
+  Rating,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 export const Materials=[
@@ -18,7 +20,6 @@ export const Materials=[
       "id": 1,
       "title": "Introduction to Materials Science",
       "category": "Material",
-      "duration": "1 hr 30 min",
       "price": 49,
       "oldPrice": 89,
       "instructor": "Dr. Jane Smith",
@@ -295,7 +296,7 @@ export const Materials=[
               oldPrice: 25,
               rating: 4.6,
               image: "https://images.unsplash.com/photo-1573497491208-6b1acb260507",
-              description: "This course helps students understand algebraic principles, equations, and problem-solving techniques for academic success.",
+              description: "This course helps students understand algebraic principles,  for academic success.",
               content: [
                 {
                   heading: "Introduction to Algebra",
@@ -317,7 +318,7 @@ export const Materials=[
               oldPrice: 30,
               rating: 4.8,
               image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d",
-              description: "A beginner-friendly course on Newton's laws, types of motion, and velocity vs acceleration explained with experiments.",
+              description: "A beginner-friendly course on Newton's laws, types of motion, and explained with experiments.",
               content: [
                 {
                   heading: "Types of Motion",
@@ -343,7 +344,7 @@ export const Materials=[
               content: [
                 {
                   heading: "Types of Reactions",
-                  paragraph: "Learn synthesis, decomposition, and displacement reactions with easy-to-understand chemical equations."
+                  paragraph: "Learn synthesis, decomposition, and displacement reactions  chemical equations."
                 },
                 {
                   heading: "Balancing Equations",
@@ -361,15 +362,15 @@ export const Materials=[
               oldPrice: 35,
               rating: 4.7,
               image: "https://tse4.mm.bing.net/th?id=OIP.t2b7R9TSABKsdqXcViN_iAHaEK&pid=Api&P=0&h=180",
-              description: "Explore the fundamental unit of life – the cell. Understand cell organelles and their roles through illustrations.",
+              description: "Explore the fundamental unit .and their roles through illustrations.",
               content: [
                 {
                   heading: "Cell Components",
-                  paragraph: "Detailed walkthrough of nucleus, mitochondria, endoplasmic reticulum, and their functions in living organisms."
+                  paragraph: "Detailed walkthrough of nucleus, mitochondria,  and their functions in living organisms."
                 },
                 {
                   heading: "Differences between Plant and Animal Cells",
-                  paragraph: "Learn with diagrams and interactive visuals the major structural differences between plant and animal cells."
+                  paragraph: "Learn with diagrams and interactive visuals the differences between plant and animal cells."
                 }
               ]
             },
@@ -383,7 +384,7 @@ export const Materials=[
               oldPrice: 20,
               rating: 4.2,
               image: "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5",
-              description: "Understand the Earth's atmosphere, weather elements, and how climate changes are affecting our environment.",
+              description: "Understand the Earth's atmosphere, weather  are affecting our environment.",
               content: [
                 {
                   heading: "Atmospheric Layers",
@@ -400,88 +401,118 @@ export const Materials=[
   
   
 const MaterialCoursesSection = () => {
+  const theme = useTheme();
     const navigate = useNavigate();
+const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
+  // Card width based on device
+  const getCardWidth = () => {
+    if (isMobile) return "100%";
+    if (isTablet) return "46%";
+    return "30%"; // for desktop
+  };
   return (
-    <Box sx={{ px: 4, py: 6, backgroundColor: "#f9f9f9" }}>
-      <Typography variant="h4" fontWeight="bold" >
+    <Box sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 4, sm: 6 }, backgroundColor: "#f9f9f9" }}>
+      <Typography
+        variant={isMobile ? "h5" : "h4"}
+        fontWeight="bold"
+        sx={{ mb: 1, textAlign: isMobile ? "center" : "center" }}
+      >
         📘 Material Courses
       </Typography>
-      <Typography variant="body1" color="text.secondary" gutterBottom>
+
+      <Typography
+        variant="body1"
+        color="text.secondary"
+        gutterBottom
+        sx={{ textAlign: isMobile ? "center" : "center", mb: 4 }}
+      >
         Explore top-rated courses related to Materials Science, Engineering, and more.
       </Typography>
 
       <Box
-  sx={{
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: 2,
-    px: 2,
-  }}
->
-  {Materials.map((course) => (
-    <Card
-      key={course.id}
-      sx={{
-        width: "19%", 
-        borderRadius: 3,
-        boxShadow: 3,
-        display: "flex",
-        flexDirection: "column",
-        mt:2
-      }}
-      onClick={() => navigate(`/materials/${course.id}`)}
-    >
-      <CardMedia
-        component="img"
-        height="150"
-        image={course.image}
-        alt={course.title}
-      />
-      <CardContent sx={{ flexGrow: 1 }}>
-      
-        <Typography variant="h6" gutterBottom noWrap>
-          {course.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          By {course.instructor} • {course.duration}
-        </Typography>
-        <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-          <Rating
-            value={course.rating}
-            precision={0.1}
-            readOnly
-            size="small"
-          />
-          <Typography variant="body2" sx={{ ml: 1 }}>
-            {course.rating}
-          </Typography>
-        </Box>
-        <Typography variant="h6" color="primary">
-          ${course.price}
-          <Typography
-            component="span"
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: isMobile ? "center" : "flex-start",
+          gap: 3,
+          p:1,ml:isMobile?1:5
+        }}
+      >
+        {Materials.map((course) => (
+          <Card
+            key={course.id}
             sx={{
-              textDecoration: "line-through",
-              color: "#999",
-              fontSize: "0.9rem",
-              ml: 1,
-            }}
-          >
-            ${course.oldPrice}
-          </Typography>
-        </Typography>
-      </CardContent>
-      <CardActions sx={{ justifyContent: "center", pb: 2 }}>
-        <Button size="small" variant="contained" color="primary">
-          View Details
-        </Button>
-      </CardActions>
-    </Card>
-  ))}
-</Box>
+              width: getCardWidth(),
+              borderRadius: 3,
+              p:1,
 
+              boxShadow: 3,
+              display: "flex",
+              flexDirection: "column",
+              transition: "0.3s",
+              ":hover": { transform: "translateY(-5px)" },
+            }}
+            onClick={() => navigate(`/materials/${course.id}`)}
+          >
+           
+            <CardMedia
+              component="img"
+              height="150"
+              image={course.image}
+              alt={course.title}
+                sx={{ borderRadius: 2 ,
+              
+            }}
+            />
+          
+            <CardContent sx={{ flexGrow: 1 }}>
+              <Typography variant="h6" gutterBottom noWrap>
+                {course.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" gutterBottom>
+                By {course.instructor}
+              </Typography>
+              <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+                <Rating
+                  value={course.rating}
+                  precision={0.1}
+                  readOnly
+                  size="small"
+                />
+                <Typography variant="body2" sx={{ ml: 1 }}>
+                  {course.rating}
+                </Typography>
+              </Box>
+              <Typography variant="h6" color="primary">
+                ${course.price}
+                <Typography
+                  component="span"
+                  sx={{
+                    textDecoration: "line-through",
+                    color: "#999",
+                    fontSize: "0.9rem",
+                    ml: 1,
+                  }}
+                >
+                  ${course.oldPrice}
+                </Typography>
+              </Typography>
+            </CardContent>
+            <CardActions sx={{ justifyContent: "center", pb: 2 }}>
+              <Button
+                size="small"
+                variant="contained"
+                color="secondary"
+                sx={{ borderRadius: 10, textTransform: "none" }}
+              >
+                View Details
+              </Button>
+            </CardActions>
+          </Card>
+        ))}
+      </Box>
     </Box>
   );
 };

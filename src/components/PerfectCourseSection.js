@@ -33,7 +33,61 @@ export const courses = [
     video:"https://youtu.be/6DP7cMN99zQ?t=728",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_1.13280665.png&w=750&q=75",
     lastUpdated: "Sep 29, 2024",
-    description: "Learn the basics of React including hooks, components, state management and more."
+    description: "Learn the basics of React including hooks, components, state management and more.",
+      instructor: {
+    name: "D. William",
+    bio: "Senior frontend engineer with 10+ years of experience.",
+  },
+  curriculum: [
+    {
+      section: "Intro Course content",
+      duration: "02hr 35min",
+      items: [
+        { type: "video", title: "Video 1", duration: "22 minutes", preview: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", preview: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+        { type: "exam", title: "Lesson 03 Exam", questions: 20 },
+      ],
+    },
+    {
+      section: "Course Fundamentals",
+      duration: "1hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Core Concept",
+      duration: "2hr 2min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Conclusion",
+      duration: "4hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+  ],
+ 
+  reviews: [
+    { user: "Alice", comment: "Great explanation!" },
+    { user: "Bob", comment: "Really helped me understand hooks." },
+  ]
   
   },
   {
@@ -49,7 +103,61 @@ export const courses = [
     video:"https://youtu.be/ceV3RsG946s",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_2.b4b9a2fc.png&w=750&q=75",
     lastUpdated: "Sep 29, 2024",
-    description: "Learn the basics of React including hooks, components, state management and more."
+    description: "Learn the basics of React including hooks, components, state management and more.",
+      instructor: {
+    name: "D. William",
+    bio: "Senior frontend engineer with 10+ years of experience.",
+  },
+  curriculum: [
+    {
+      section: "Intro Course content",
+      duration: "02hr 35min",
+      items: [
+        { type: "video", title: "Video 1", duration: "22 minutes", preview: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", preview: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+        { type: "exam", title: "Lesson 03 Exam", questions: 20 },
+      ],
+    },
+    {
+      section: "Course Fundamentals",
+      duration: "1hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Core Concept",
+      duration: "2hr 2min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Conclusion",
+      duration: "4hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+  ],
+ 
+  reviews: [
+    { user: "Alice", comment: "Great explanation!" },
+    { user: "Bob", comment: "Really helped me understand hooks." },
+  ]
   
   },
   {
@@ -65,7 +173,61 @@ export const courses = [
     video:"https://youtu.be/SqcY0GlETPk",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_3.34a6552d.png&w=750&q=75",
     lastUpdated: "Sep 29, 2024",
-    description: "Learn the basics of React including hooks, components, state management and more."
+    description: "Learn the basics of React including hooks, components, state management and more.",
+      instructor: {
+    name: "D. William",
+    bio: "Senior frontend engineer with 10+ years of experience.",
+  },
+  curriculum: [
+    {
+      section: "Intro Course content",
+      duration: "02hr 35min",
+      items: [
+        { type: "video", title: "Video 1", duration: "22 minutes", preview: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", preview: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+        { type: "exam", title: "Lesson 03 Exam", questions: 20 },
+      ],
+    },
+    {
+      section: "Course Fundamentals",
+      duration: "1hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Core Concept",
+      duration: "2hr 2min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Conclusion",
+      duration: "4hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+  ],
+ 
+  reviews: [
+    { user: "Alice", comment: "Great explanation!" },
+    { user: "Bob", comment: "Really helped me understand hooks." },
+  ]
   
   },
   {
@@ -81,7 +243,61 @@ export const courses = [
     video:"https://youtu.be/JDJ0zQLvpOA?list=PLhnVDNT5zYN_PfPXedWpMy_UTeYNExbfR",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_6.1149718f.png&w=750&q=75",
     lastUpdated: "Sep 29, 2024",
-    description: "Learn the basics of React including hooks, components, state management and more."
+    description: "Learn the basics of React including hooks, components, state management and more.",
+      instructor: {
+    name: "D. William",
+    bio: "Senior frontend engineer with 10+ years of experience.",
+  },
+  curriculum: [
+    {
+      section: "Intro Course content",
+      duration: "02hr 35min",
+      items: [
+        { type: "video", title: "Video 1", duration: "22 minutes", preview: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", preview: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+        { type: "exam", title: "Lesson 03 Exam", questions: 20 },
+      ],
+    },
+    {
+      section: "Course Fundamentals",
+      duration: "1hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Core Concept",
+      duration: "2hr 2min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Conclusion",
+      duration: "4hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+  ],
+ 
+  reviews: [
+    { user: "Alice", comment: "Great explanation!" },
+    { user: "Bob", comment: "Really helped me understand hooks." },
+  ]
   
   },
   {
@@ -97,7 +313,61 @@ export const courses = [
     video:"https://youtu.be/NlQFSgvTaFw?list=PLhnVDNT5zYN_PfPXedWpMy_UTeYNExbfR",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_5.1cca53ab.png&w=750&q=75",
     lastUpdated: "Sep 29, 2024",
-    description: "Learn the basics of React including hooks, components, state management and more."
+    description: "Learn the basics of React including hooks, components, state management and more.",
+      instructor: {
+    name: "D. William",
+    bio: "Senior frontend engineer with 10+ years of experience.",
+  },
+  curriculum: [
+    {
+      section: "Intro Course content",
+      duration: "02hr 35min",
+      items: [
+        { type: "video", title: "Video 1", duration: "22 minutes", preview: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", preview: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+        { type: "exam", title: "Lesson 03 Exam", questions: 20 },
+      ],
+    },
+    {
+      section: "Course Fundamentals",
+      duration: "1hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Core Concept",
+      duration: "2hr 2min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Conclusion",
+      duration: "4hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+  ],
+ 
+  reviews: [
+    { user: "Alice", comment: "Great explanation!" },
+    { user: "Bob", comment: "Really helped me understand hooks." },
+  ]
   
   },
   {
@@ -194,7 +464,61 @@ export const courses = [
     video:"https://youtu.be/NlQFSgvTaFw?list=PLhnVDNT5zYN_PfPXedWpMy_UTeYNExbfR",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_5.1cca53ab.png&w=750&q=75",
     lastUpdated: "Sep 29, 2024",
-    description: "Learn the basics of React including hooks, components, state management and more."
+    description: "Learn the basics of React including hooks, components, state management and more.",
+      instructor: {
+    name: "D. William",
+    bio: "Senior frontend engineer with 10+ years of experience.",
+  },
+  curriculum: [
+    {
+      section: "Intro Course content",
+      duration: "02hr 35min",
+      items: [
+        { type: "video", title: "Video 1", duration: "22 minutes", preview: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", preview: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+        { type: "exam", title: "Lesson 03 Exam", questions: 20 },
+      ],
+    },
+    {
+      section: "Course Fundamentals",
+      duration: "1hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Core Concept",
+      duration: "2hr 2min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Conclusion",
+      duration: "4hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+  ],
+ 
+  reviews: [
+    { user: "Alice", comment: "Great explanation!" },
+    { user: "Bob", comment: "Really helped me understand hooks." },
+  ]
   
   },
   {
@@ -210,7 +534,61 @@ export const courses = [
     video:"https://youtu.be/paG4rx4CB4s?list=PLhnVDNT5zYN_PfPXedWpMy_UTeYNExbfR",
     image: "http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgrid_4.1f298d26.png&w=750&q=75",
     lastUpdated: "Sep 29, 2024",
-    description: "Learn the basics of React including hooks, components, state management and more."
+    description: "Unlock the power of React.js, the most popular JavaScript library for building fast, scalable, and interactive .",
+     instructor: {
+    name: "D. William",
+    bio: "Senior frontend engineer with 10+ years of experience.",
+  },
+  curriculum: [
+    {
+      section: "Intro Course content",
+      duration: "02hr 35min",
+      items: [
+        { type: "video", title: "Video 1", duration: "22 minutes", preview: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", preview: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+        { type: "exam", title: "Lesson 03 Exam", questions: 20 },
+      ],
+    },
+    {
+      section: "Course Fundamentals",
+      duration: "1hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Core Concept",
+      duration: "2hr 2min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+     {
+      section: "Course Conclusion",
+      duration: "4hr 20min",
+      items: [
+         { type: "video", title: "Video 1", duration: "22 minutes", locked: true },
+          { type: "video", title: "Video 2", duration: "32 minutes", locked: true },
+        { type: "video", title: "Video 3", duration: "22 minutes", locked: true },
+       
+      ],
+      
+    },
+  ],
+ 
+  reviews: [
+    { user: "Alice", comment: "Great explanation!" },
+    { user: "Bob", comment: "Really helped me understand hooks." },
+  ]
   
   },
 ];

@@ -1,16 +1,18 @@
 import { Route, Routes,  } from 'react-router-dom';
 import './App.css';
-import AnimatedVideoSlider from './components/AnimatedVideoSlider';
-import CourseDetails from './components/CourseDetails';
 import Landingpage from './components/Landingpage';
-import MaterialDetails from './components/MaterialDetails';
 import Navbar from './components/Navbar';
-import PerfectCourseSection from './components/PerfectCourseSection';
-import PopularSubjects from './components/PopularSubjects';
+import CourseDetails from './pages/CourseDetails';
+import MaterialDetails from './pages/MaterialDetails';
+import ProfileAccessPage from './pages/ProfileAccessPage';
+import { useState } from 'react';
+
 
 
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="App">
       <Navbar/>
@@ -19,7 +21,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Landingpage />} />
         <Route path="/Landingpage" element={<Landingpage />} />
-        
+        <Route path="/profile-access" element={<ProfileAccessPage setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/course/:id" element={<CourseDetails />} />
         <Route path="/materials/:id" element={<MaterialDetails />} />
        </Routes>

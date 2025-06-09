@@ -11,14 +11,19 @@ import { Link } from "react-router-dom";
 const CourseCard = ({ course, index }) => {
   return (
     <Link to={`/course/${index}`} style={{ textDecoration: "none" }}>
-      <Card sx={{ borderRadius: 3, p: 1, width: "100%", height: "100%" }}>
+      
+      <Card sx={{ borderRadius: 3, p: 1, width: "100%", height: "100%", transition: "0.3s",
+              ":hover": { transform: "translateY(-5px)" },
+             }}>
         <Box sx={{ position: "relative" }}>
           <CardMedia
             component="img"
             height="160"
             image={course.image}
             alt={course.title}
-            sx={{ borderRadius: 2 }}
+            sx={{ borderRadius: 2 ,
+              
+            }}
           />
           <Chip
             label={course.category}
