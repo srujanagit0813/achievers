@@ -10,6 +10,15 @@ import DashboardPage from './components/admin/DashboardPage';
 import Dashboard from './components/admin/Dashboard';
 import DashboardSection from './components/admin/DashboardSection';
 import NoticeBoardAndNotifications from './components/admin/NoticeBoardAndNotifications';
+import TotalFeedbacks from './components/admin/totalfeedback';
+import EdurockFooter from './components/admin/EdurockFooter';
+import UserProfile from './components/admin/UserProfile';
+import ChatDashboard from './components/admin/ChatUI';
+import CourseCard from './components/CourseCard';
+import CourseDashboard from './components/admin/courses';
+import QuizAttemptsPage from './components/admin/quizData';
+import UserProfilePage from './components/admin/UserProfilePage';
+import CreateCourse from './components/admin/CreateCourse';
 
 
 
@@ -21,6 +30,14 @@ function App() {
        <Dashboard/>
       <DashboardSection/>
       <NoticeBoardAndNotifications/>
+      <TotalFeedbacks/>
+      <EdurockFooter/>
+      <UserProfile/>
+      <ChatDashboard/>
+      <CourseDashboard/>
+      <QuizAttemptsPage/>
+      <UserProfilePage/>
+      <CreateCourse/>
         <Routes>
         <Route path="/" element={<Landingpage />} />
         <Route path="/Landingpage" element={<Landingpage />} />
