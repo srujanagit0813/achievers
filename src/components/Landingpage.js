@@ -4,6 +4,7 @@ import MaterialCoursesSection from './MaterialCoursesSection'
 import PerfectCourseSection from './PerfectCourseSection'
 import PopularSubjects from './PopularSubjects'
 import TrendingExams from './TrendingExams'
+import Navbar from './Navbar'
 
 
 
@@ -12,6 +13,7 @@ import TrendingExams from './TrendingExams'
 const Landingpage = () => {
   return (
     <div>
+      
       <AnimatedVideoSlider/>
       <PopularSubjects/>
       <TrendingExams/>

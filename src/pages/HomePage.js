@@ -22,6 +22,7 @@ import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import Blogs from "../components/Blogs";
 import Appbar from '../components/Appbar';
+import TestimonialsSlider from '../components/TestimonialsSlider';
 
 const bgImages = [
   'https://images.unsplash.com/photo-1503676260728-1c00da094a0b',
@@ -153,7 +154,7 @@ const HomePage = () => {
             '&:hover': { bgcolor: '#ffa726' },
             mb: 4,
             fontFamily: 'Helvetica Neue', 
-          }}>
+          }} onClick={()=>navigate('/profile-access')}>
             Join Now
           </Button>
         </Container>
@@ -220,7 +221,7 @@ const HomePage = () => {
           <Button
             variant="outlined"
             color="primary"
-            onClick={() => navigate('/view-all-courses')}
+            onClick={() => navigate('/Landingpage')}
             sx={{ 
               borderColor: '#2c3e70',
               color: '#2c3e70',
@@ -244,49 +245,7 @@ const HomePage = () => {
       </Box>
       {/* Testimonials Section */}
  <Box sx={{ py: 6, px: 2, backgroundColor: "#ffffff" }}>
-      <Container maxWidth="md">
-        <Typography variant="h4" fontWeight="bold" align="center" color="#2c3e70" gutterBottom>
-          What Our Learners Say
-        </Typography>
-
-        <Box mt={4}>
-          {testimonials.map((item, idx) => (
-            <Box
-              key={idx}
-              sx={{ 
-                mb: 4, 
-                p: 3, 
-                border:'1px solid #e0e0e0',
-                borderRadius:'12px',
-                boxShadow:'0px 4px 6px -1px #0003',
-                display:'flex',
-                alignItems:'flex-start',
-                gap:'1.5rem',
-                transition:'all 0.3s ease',
-                '&:hover': { boxShadow:'0px 6px 12px -1px #0005', transform:'translateY(-5px)' }
-              }}
-            >
-              <Avatar src={item.photo} alt={item.name} sx={{ width:'60px', height:'60px', border:'2px solid #ff9800' }}/>
-              <Box sx={{ flex: 1 }}>
-                <Typography variant="h6" fontWeight="bold">
-                   {item.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                   {item.role}
-                </Typography>
-                
-                {/* Rating */}
-                <Rating value={item.rating} precision={0.5} readOnly sx={{ mt: 1, mb: 1, color:'#ff9800'}}/>
-
-                {/* Feedback */}
-                <Typography variant="body1" color="rgba(0,0,0,0.7)" sx={{ mt: 1 }}>
-                   “{item.feedback}”
-                </Typography>
-              </Box>
-            </Box>
-          ))}
-        </Box>
-      </Container>
+      <TestimonialsSlider/>
     </Box>
 
 

@@ -19,6 +19,8 @@ import Appbar from './components/Appbar';
 import { useLocation } from "react-router-dom";
 import PaymentPage from './pages/PaymentPage';
 import SuccessPage from './pages/SuccessPage';
+import QuizQuestions from './components/QuizQuestions';
+import QuizResult from './components/QuizResult';
 
 
 function App() {
@@ -26,10 +28,13 @@ function App() {
    const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
  
+
+ const hideNavbar = location.pathname === '/';
+  
   return (
     <div className="App">
-      {/* <Navbar/> */}
-       
+     {/* {showNavbar && <Navbar/>}  */}
+         {!hideNavbar && <Navbar />}
       {/* {!hideNavbarRoutes.includes(location.pathname) && <Appbar />} */}
         <Routes>
            <Route path="/" element={<HomePage />} />
@@ -46,9 +51,12 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<Navigate to="/" replace />} />
         <Route path='/start-quiz' element={<StartQuizPage/>}/>
+        <Route path="/quiz-questions" element={<QuizQuestions />} />
+            <Route path="/quiz-result" element={<QuizResult />} />
   <Route path="/view-all-courses" element={<PerfectCourseSection/>}/>
    <Route path="/PaymentPage" element={<PaymentPage/>}/>
    <Route path="/success" element={<SuccessPage/>}/>
+
        </Routes>
     </div>
   );

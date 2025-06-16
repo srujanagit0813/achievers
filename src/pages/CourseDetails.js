@@ -33,6 +33,7 @@ import CourseReviews from "./CourseReviews";
 const CourseDetails = () => {
    const navigate = useNavigate();
   const { id } = useParams();
+  
    //const course = courses[parseInt(id)];
    const course = courses.find((item) => item.id === id);
   const [tab, setTab] = useState(0);

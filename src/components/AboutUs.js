@@ -37,16 +37,14 @@ const AboutUs = () => {
           <Typography
             variant="h5"
             gutterBottom
-            sx={{ color: 'orange', fontWeight: 'bold', textTransform: 'uppercase', }}
+            sx={{ color: 'black', fontWeight: 'bold', textTransform: 'uppercase',textAlign:"center",marginLeft:"80%",mt:-5 }}
           >
             About Us
           </Typography>
 
-          <Typography variant="h4" fontWeight="bold" gutterBottom sx={{ color: 'black' }}>
-            Welcome to Achievers LMS
-          </Typography>
+         
 
-          <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+          <Typography variant="h5" gutterBottom sx={{ fontWeight: 600,textAlign:"justify" }}>
             Smart learning is key for your success
           </Typography>
 

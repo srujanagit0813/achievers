@@ -7,7 +7,8 @@ import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import PerfectCourseSection from "./PerfectCourseSection";
 import TestSeriesPage from '../pages/TestSeriesPage';
-// utility to generate past 6 days
+
+
 function getPastDates(count = 6) {
   const dates = [];
 
@@ -20,6 +21,7 @@ function getPastDates(count = 6) {
 }
 
 function ClassPage() {
+  
   const location = useLocation();
   const { examTitle } = location.state || {};
 const navigate = useNavigate();

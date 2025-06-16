@@ -39,7 +39,7 @@ const Navbar = () => {
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           {/* Logo and Search */}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <NavLink to="/">
+            <NavLink to="/Landingpage">
               <Box
                 component="img"
                 src={achievers}
