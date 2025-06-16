@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   Box,
@@ -15,6 +15,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Aos from "aos";
 export const Materials=[
     {
       "id": 1,
@@ -69,116 +70,10 @@ export const Materials=[
        }
      ]
       },
+      
+     
       {
-        "id": 3,
-        "title": "Composite Materials and Applications",
-        "category": "Material",
-        "duration": "1 hr 45 min",
-        "price": 39,
-        "oldPrice": 79,
-        "instructor": "Dr. Neha Patel",
-        "image": "https://tse1.mm.bing.net/th?id=OIP.1vvfllioIazp3WRbIrVrzAHaFj&pid=Api&P=0&h=180",
-        "rating": 4.7,
-        "lessons": 22,
-        "description": "Learn the basics of React.js, components, hooks, and state.",
-        "content": [
-       {
-         "heading": "What is React?",
-         "paragraph": "React is a JavaScript library for building user interfaces..."
-       },
-       {
-         "heading": "JSX in React",
-         "paragraph": "JSX is a syntax extension for JavaScript used with React..."
-       },
-       {
-         "heading": "React Components",
-         "paragraph": "Components are the building blocks of React applications..."
-       }
-     ]
-      },
-      {
-        "id": 4,
-        "title": "Nanomaterials and Nanotechnology",
-        "category": "Material",
-        "duration": "2 hr 5 min",
-        "price": 69,
-        "oldPrice": 110,
-        "instructor": "Dr. Samuel Lee",
-        "image": "https://tse4.mm.bing.net/th?id=OIP.oF7HYVBtewpzomaxamLXnwAAAA&pid=Api&P=0&h=180",
-        "rating": 4.9,
-        "lessons": 30,
-        "description": "Learn the basics of React.js, components, hooks, and state.",
-        "content": [
-       {
-         "heading": "What is React?",
-         "paragraph": "React is a JavaScript library for building user interfaces..."
-       },
-       {
-         "heading": "JSX in React",
-         "paragraph": "JSX is a syntax extension for JavaScript used with React..."
-       },
-       {
-         "heading": "React Components",
-         "paragraph": "Components are the building blocks of React applications..."
-       }
-     ]
-      },
-      {
-        "id": 5,
-        "title": "Smart Materials for Future Technologies",
-        "category": "Material",
-        "duration": "1 hr 20 min",
-        "price": 45,
-        "oldPrice": 85,
-        "instructor": "Dr. Maria Gonzalez",
-        "image": "https://tse4.mm.bing.net/th?id=OIP.X_ftLCD9NgewHcydUWNNAQHaFn&pid=Api&P=0&h=180",
-        "rating": 4.5,
-        "lessons": 18,
-        "description": "Learn the basics of React.js, components, hooks, and state.",
-        "content": [
-       {
-         "heading": "What is React?",
-         "paragraph": "React is a JavaScript library for building user interfaces..."
-       },
-       {
-         "heading": "JSX in React",
-         "paragraph": "JSX is a syntax extension for JavaScript used with React..."
-       },
-       {
-         "heading": "React Components",
-         "paragraph": "Components are the building blocks of React applications..."
-       }
-     ]
-      },
-      {
-        "id": 6,
-        "title": "Introduction to Materials Science",
-        "category": "Material",
-        "duration": "1 hr 30 min",
-        "price": 49,
-        "oldPrice": 89,
-        "instructor": "Dr. Jane Smith",
-        "image": "https://tse4.mm.bing.net/th?id=OIP.HJbSQKZJcqC-NPFS90XlCgAAAA&pid=Api&P=0&h=180",
-        "rating": 4.8,
-        "lessons": 20,
-        "description": "Learn the basics of React.js, components, hooks, and state.",
-        "content": [
-       {
-         "heading": "What is React?",
-         "paragraph": "React is a JavaScript library for building user interfaces..."
-       },
-       {
-         "heading": "JSX in React",
-         "paragraph": "JSX is a syntax extension for JavaScript used with React..."
-       },
-       {
-         "heading": "React Components",
-         "paragraph": "Components are the building blocks of React applications..."
-       }
-     ]
-      },
-      {
-          "id": 7,
+          "id": 3,
           "title": "Materials Engineering for Beginners",
           "category": "Material",
           "duration": "2 hr 15 min",
@@ -204,35 +99,9 @@ export const Materials=[
          }
        ]
         },
+       
         {
-          "id": 8,
-          "title": "Composite Materials and Applications",
-          "category": "Material",
-          "duration": "1 hr 45 min",
-          "price": 39,
-          "oldPrice": 79,
-          "instructor": "Dr. Neha Patel",
-          "image": "https://tse4.mm.bing.net/th?id=OIP.i1fpXLkrGhnGuA8SoIR-3wHaJe&pid=Api&P=0&h=180",
-          "rating": 4.7,
-          "lessons": 22,
-          "description": "Learn the basics of React.js, components, hooks, and state.",
-          "content": [
-         {
-           "heading": "What is React?",
-           "paragraph": "React is a JavaScript library for building user interfaces..."
-         },
-         {
-           "heading": "JSX in React",
-           "paragraph": "JSX is a syntax extension for JavaScript used with React..."
-         },
-         {
-           "heading": "React Components",
-           "paragraph": "Components are the building blocks of React applications..."
-         }
-       ]
-        },
-        {
-          "id": 9,
+          "id": 4,
           "title": "Nanomaterials and Nanotechnology",
           "category": "Material",
           "duration": "2 hr 5 min",
@@ -258,36 +127,10 @@ export const Materials=[
          }
        ]
         },
-        {
-          "id": 10,
-          "title": "Smart Materials for Future Technologies",
-          "category": "Material",
-          "duration": "1 hr 20 min",
-          "price": 45,
-          "oldPrice": 85,
-          "instructor": "Dr. Maria Gonzalez",
-          "image": "https://tse2.mm.bing.net/th?id=OIP.hTxkggPnTTLBG8Y5tWXWMAHaD4&pid=Api&P=0&h=180",
-          "rating": 4.5,
-          "lessons": 18,
-          "description": "Learn the basics of React.js, components, hooks, and state.",
-          "content": [
-         {
-           "heading": "What is React?",
-           "paragraph": "React is a JavaScript library for building user interfaces..."
-         },
-         {
-           "heading": "JSX in React",
-           "paragraph": "JSX is a syntax extension for JavaScript used with React..."
-         },
-         {
-           "heading": "React Components",
-           "paragraph": "Components are the building blocks of React applications..."
-         }
-       ]
-        },
+       
         
             {
-              id: 11,
+              id: 5,
               category: "Mathematics",
               title: "Algebra Foundations for Beginners",
               instructor: "Dr. Ramesh Kumar",
@@ -309,7 +152,7 @@ export const Materials=[
               ]
             },
             {
-              id: 12,
+              id: 6,
               category: "Physics",
               title: "Basics of Motion and Laws",
               instructor: "Prof. Anjali Mehra",
@@ -330,77 +173,17 @@ export const Materials=[
                 }
               ]
             },
-            {
-              id: 13,
-              category: "Chemistry",
-              title: "Understanding Chemical Reactions",
-              instructor: "Mrs. Kavita Desai",
-              duration: "1 hr 20 min",
-              price: 18,
-              oldPrice: 22,
-              rating: 4.4,
-              image: "https://tse4.mm.bing.net/th?id=OIP.NMhM8tjCuCx7y3NKMQJT_AHaHa&pid=Api&P=0&h=180",
-              description: "An introductory course on chemical bonding, reactions, and equations with lab-based visual content.",
-              content: [
-                {
-                  heading: "Types of Reactions",
-                  paragraph: "Learn synthesis, decomposition, and displacement reactions  chemical equations."
-                },
-                {
-                  heading: "Balancing Equations",
-                  paragraph: "Master the art of balancing chemical equations with step-by-step rules and examples."
-                }
-              ]
-            },
-            {
-              id: 14,
-              category: "Biology",
-              title: "Cell Structure and Functions",
-              instructor: "Dr. Swetha Rao",
-              duration: "2 hrs",
-              price: 22,
-              oldPrice: 35,
-              rating: 4.7,
-              image: "https://tse4.mm.bing.net/th?id=OIP.t2b7R9TSABKsdqXcViN_iAHaEK&pid=Api&P=0&h=180",
-              description: "Explore the fundamental unit .and their roles through illustrations.",
-              content: [
-                {
-                  heading: "Cell Components",
-                  paragraph: "Detailed walkthrough of nucleus, mitochondria,  and their functions in living organisms."
-                },
-                {
-                  heading: "Differences between Plant and Animal Cells",
-                  paragraph: "Learn with diagrams and interactive visuals the differences between plant and animal cells."
-                }
-              ]
-            },
-            {
-              id: 15,
-              category: "Geography",
-              title: "Climate and Weather Patterns",
-              instructor: "Mr. Arvind Sharma",
-              duration: "1 hr 30 min",
-              price: 12,
-              oldPrice: 20,
-              rating: 4.2,
-              image: "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5",
-              description: "Understand the Earth's atmosphere, weather  are affecting our environment.",
-              content: [
-                {
-                  heading: "Atmospheric Layers",
-                  paragraph: "An overview of troposphere to exosphere with animations and global examples."
-                },
-                {
-                  heading: "Factors Influencing Climate",
-                  paragraph: "Explore latitude, altitude, ocean currents, and other major climate influencers."
-                }
-              ]
-            }
+          
+          
+           
           ];
           
   
   
 const MaterialCoursesSection = () => {
+   useEffect(() => {
+          Aos.init({ duration: 1500, once: true });
+        }, []);
   const theme = useTheme();
     const navigate = useNavigate();
 const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -413,10 +196,11 @@ const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     return "30%"; // for desktop
   };
   return (
-    <Box sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 4, sm: 6 }, backgroundColor: "#f9f9f9" }}>
+    <Box sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 4, sm: 6 }, backgroundColor: "#f9f9f9" }} data-aos="fade-up">
       <Typography
         variant={isMobile ? "h5" : "h4"}
         fontWeight="bold"
+         color="error"
         sx={{ mb: 1, textAlign: isMobile ? "center" : "center" }}
       >
         📘 Material Courses
@@ -437,7 +221,7 @@ const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
           flexWrap: "wrap",
           justifyContent: isMobile ? "center" : "flex-start",
           gap: 3,
-          p:1,ml:isMobile?1:5
+          p:2,ml:isMobile?1:5
         }}
       >
         {Materials.map((course) => (
@@ -454,7 +238,7 @@ const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
               transition: "0.3s",
               ":hover": { transform: "translateY(-5px)" },
             }}
-            onClick={() => navigate(`/materials/${course.id}`)}
+            onClick={() => navigate(`/materials/${course.id}`)} data-aos="fade-up"
           >
            
             <CardMedia

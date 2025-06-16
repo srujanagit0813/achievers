@@ -8,6 +8,9 @@ import {
   LinearProgress,
   Rating,
   Chip,
+   Paper,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 
 // Dummy data
@@ -18,7 +21,7 @@ const reviewsData = {
   reviews: [
     {
       user: "Adam Smit",
-      avatar: "/avatars/user1.jpg", // local or URL
+      avatar: "https://tse2.mm.bing.net/th?id=OIP.IrUBHhdMo6wWLFueKNreRwHaHa&pid=Api&P=0&h=180", // local or URL
       rating: 5,
       comment:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Doloribus, omnis fugit corporis iste magnam ratione.",
@@ -26,7 +29,7 @@ const reviewsData = {
     },
     {
       user: "Adam Smit",
-      avatar: "/avatars/user2.jpg",
+      avatar: "https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?cs=srgb&dl=pexels-andrea-piacquadio-712513.jpg&fm=jpg",
       rating: 5,
       comment:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Doloribus, omnis fugit corporis iste magnam ratione.",
@@ -58,13 +61,15 @@ const ReviewBreakdownBar = ({ stars, count, total }) => (
 );
 
 const CourseReviews = () => {
+    const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { overall, totalReviews, ratingBreakdown, reviews } = reviewsData;
 
   return (
     <Box sx={{ p: 4 }}>
-      <Grid container spacing={4}>
+      <Grid container spacing={1}>
         {/* Left Summary Box */}
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={12} sx={{width:"90%"}}>
           <Box
             sx={{
               p: 3,
@@ -94,32 +99,66 @@ const CourseReviews = () => {
         </Grid>
 
         {/* Right Review List */}
-        <Grid item xs={12} md={8}>
-          <Typography variant="h6" sx={{ mb: 2, borderBottom: "2px solid #e91e63" }}>
-            Customer Reviews
-          </Typography>
+         <Grid item xs={12} md={8} sx={{width:"90%"}}>
+      <Typography
+        variant="h6"
+        sx={{
+          mb: 3,
+          borderBottom: "3px solid #e91e63",
+          pb: 1,
+          fontWeight: 600,
+          color: "primary.main",
+        }}
+      >
+        💬 Customer Reviews
+      </Typography>
 
-          {reviews.map((r, index) => (
-            <Box key={index} sx={{ mb: 3 }}>
-              <Grid container spacing={2} alignItems="center">
-                <Grid item>
-                  <Avatar src={r.avatar} sx={{ width: 56, height: 56 }} />
-                </Grid>
-                <Grid item xs>
-                  <Typography fontWeight="bold">{r.user}</Typography>
-                  <Rating value={r.rating} readOnly size="small" />
-                  <Typography variant="body2" color="text.secondary">
-                    {r.comment}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Chip label={r.date} variant="outlined" size="small" />
-                </Grid>
-              </Grid>
-              <Divider sx={{ mt: 2 }} />
-            </Box>
-          ))}
-        </Grid>
+      {reviews.map((r, index) => (
+        <Paper
+          key={index}
+          elevation={2}
+          sx={{
+            p: 2,
+            mb: 3,
+            borderRadius: 3,
+            transition: "0.3s",
+            "&:hover": {
+              boxShadow: 6,
+              backgroundColor: "#f9f9f9",
+            },
+          }}
+        >
+          <Grid container spacing={2} alignItems="center">
+            <Grid item>
+              <Avatar src={r.avatar} sx={{ width: 56, height: 56 }} />
+            </Grid>
+
+            <Grid item xs>
+              <Typography fontWeight="bold" fontSize={16}>
+                {r.user}
+              </Typography>
+              <Rating value={r.rating} readOnly size="small" />
+              <Typography
+                variant="body2"
+                
+                sx={{ mt: 1, lineHeight: 1.6,textAlign:"justify",fontSize:18 }}
+              >
+                {r.comment}
+              </Typography>
+            </Grid>
+
+            <Grid item>
+              <Chip
+                label={r.date}
+                variant="outlined"
+                size="small"
+                color="secondary"
+              />
+            </Grid>
+          </Grid>
+        </Paper>
+      ))}
+    </Grid>
       </Grid>
     </Box>
   );

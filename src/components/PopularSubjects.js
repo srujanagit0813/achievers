@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Typography,
@@ -7,6 +7,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
+import Aos from "aos";
 
 export const subjects = [
    {
@@ -74,6 +75,9 @@ export const subjects = [
 ];
 
 const PopularSubjects = () => {
+   useEffect(() => {
+      Aos.init({ duration: 1500, once: true });
+    }, []);
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -91,16 +95,18 @@ const PopularSubjects = () => {
         variant={isMobile ? "h5" : "h4"}
         fontWeight="bold"
         align="center"
+         color="error"
         sx={{
           mb: 4,
-          color: "#000",
+      
           position: "relative",
         }}
+        data-aos="fade-up"
       >
         Popular Subjects
       </Typography>
 
-      <Grid container spacing={isMobile ? 2 : 4}   justifyContent={"center"}>
+      <Grid container spacing={isMobile ? 2 : 4}   justifyContent={"center"} data-aos="fade-up">
         {subjects.map((subject, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
             <Paper
@@ -114,7 +120,7 @@ const PopularSubjects = () => {
                 "&:hover": {
                   transform: "translateY(-5px)",
                 },
-              }}
+              }} data-aos="fade-up"
             >
               <Box fontSize={isMobile ? 30 : 40} mb={1}>
                 {subject.icon}

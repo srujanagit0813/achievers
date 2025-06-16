@@ -5,6 +5,10 @@ import PerfectCourseSection from './PerfectCourseSection'
 import PopularSubjects from './PopularSubjects'
 import TrendingExams from './TrendingExams'
 
+
+
+
+
 const Landingpage = () => {
   return (
     <div>
@@ -13,6 +17,10 @@ const Landingpage = () => {
       <TrendingExams/>
       <PerfectCourseSection/>
       <MaterialCoursesSection/>
+      
+      
+     
+
     </div>
   )
 }

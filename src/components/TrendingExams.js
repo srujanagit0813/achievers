@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Grid, Typography, Card, CardContent, CardMedia, useTheme, useMediaQuery } from "@mui/material";
+import Aos from "aos";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 export const trendingExams = [
@@ -63,11 +65,15 @@ export const trendingExams = [
 ];
 
 const TrendingExams = () => {
+   useEffect(() => {
+        Aos.init({ duration: 1500, once: true });
+      }, []);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
+  
+const navigate = useNavigate();
   return (
-    <Box sx={{ py: 5, px: isMobile ? 2 : 6, backgroundColor: "#fff" }}>
+    <Box sx={{ py: 5, px: isMobile ? 2 : 6, backgroundColor: "#fff" }} data-aos="fade-up">
       <Typography
         variant="h4"
         fontWeight="bold"
@@ -91,7 +97,9 @@ const TrendingExams = () => {
      <Grid container spacing={4} justifyContent="center">
   {trendingExams.map((exam, index) => (
  <Grid item xs={6} sm={4} md={2} lg={2} xl={2} key={index}>
+   
       <Card
+      onClick={() => navigate('/class-page', { state: { examTitle: exam.title } })}
         elevation={2}
         sx={{
           textAlign: "center",
@@ -105,7 +113,7 @@ const TrendingExams = () => {
             transform: "scale(1.03)",
             borderColor: "primary.main",
           },
-        }}
+        }} data-aos="fade-up"
       >
         <CardMedia
           component="img"
@@ -130,6 +138,7 @@ const TrendingExams = () => {
           </Typography>
         </CardContent>
       </Card>
+   
     </Grid>
   ))}
 </Grid>

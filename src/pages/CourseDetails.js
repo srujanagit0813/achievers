@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Box,
   Grid,
@@ -14,11 +14,13 @@ import {
   AccordionSummary,
   AccordionDetails,
   List,
+  TextField,
   ListItem,
   ListItemIcon,
   ListItemText,
   useTheme,
   useMediaQuery,
+  Avatar,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LockIcon from "@mui/icons-material/Lock";
@@ -26,14 +28,22 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import ReactPlayer from "react-player";
 import { courses } from "../components/PerfectCourseSection";
+import CourseReviews from "./CourseReviews";
 
 const CourseDetails = () => {
+   const navigate = useNavigate();
   const { id } = useParams();
-  const course = courses[parseInt(id)];
+   //const course = courses[parseInt(id)];
+   const course = courses.find((item) => item.id === id);
   const [tab, setTab] = useState(0);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+
+
+   const handlePreviewClick = () => {
+    navigate(`/CourseLesson/${id}`); 
+  };
   if (!course) return <Typography>Course not found</Typography>;
 
   const InfoLine = ({ label, value }) => (
@@ -48,48 +58,60 @@ const CourseDetails = () => {
   );
 
   return (
-    <Box sx={{ backgroundColor: "#f5f7fa", py: 6, px: { xs: 2, md: 6 }, mt: 10 }}>
-      <Grid container spacing={4}>
+    <Box sx={{ backgroundColor: "#f5f7fa", py: 6, px: { xs: 2, md: 6 }, mt: 10 }} >
+      <Grid   container
+      justifyContent={"center"}
+        spacing={4}
+        direction={isMobile ? "column" : "row"}
+        alignItems="flex-start" >
         {/* Left Section */}
-        <Grid item xs={12} md={8} ml={20}>
-          <Box>
-            <img
+        <Grid item xs={12} md={4} sx={{width:isMobile?"100%":"50%"}}>
+          <Paper elevation={3} sx={{ p: 3, borderRadius: 3 }}>
+            <Box
+              component="img"
               src={course.image}
               alt={course.title}
-              style={{
+              sx={{
                 width: "100%",
-                height: isMobile ? "200px" : "250px",
+                height: isMobile ? 200 : 300,
                 objectFit: "cover",
-                borderRadius: "12px",
-                border:"2px solid #e0e0e0"
+                borderRadius: 2,
               }}
             />
-
-            <Typography sx={{ fontSize: 14, mt: 1 }}>
-              Last Update: {course.lastUpdated}
+            <Typography  sx={{ mt: 1, textAlign:"end"}}>
+             <b> Last Update</b>: {course.lastUpdated}
             </Typography>
 
-            <Typography variant="h5" sx={{ mt: 2 }}>
+            <Typography variant="h5" sx={{ mt: 2, fontWeight: 600 }}>
               {course.title}
             </Typography>
 
-            <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", mt: 1, gap: 2 }}>
-              <Typography variant="h6" color="primary">
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                mt: 2,
+                gap: 2,
+                justifyContent:"center"
+              }}
+            >
+              <Typography variant="h6" color="green" fontWeight={600}>
                 ${course.price}
               </Typography>
               <Typography
-                sx={{ textDecoration: "line-through", color: "#999" }}
+             
+                sx={{ textDecoration: "line-through", color: "red" }}
               >
                 ${course.oldPrice}
               </Typography>
               <Typography>
-                {course.lessons} Lessons ⭐ {course.rating} (44)
+                {course.lessons} Lessons ⭐ {course.rating} ({course.reviews?.length})
               </Typography>
             </Box>
 
-            <Typography sx={{ textAlign: "justify", mt: 2 }}>
-              {course.description}
-            </Typography>
+           
+          </Paper>
 
             <Box sx={{ mt: 4 }}>
               <Tabs
@@ -185,6 +207,7 @@ const CourseDetails = () => {
                                   color="success"
                                   sx={{ mr: 1 }}
                                   startIcon={<VisibilityIcon />}
+                                  onClick={handlePreviewClick}
                                 >
                                   Preview
                                 </Button>
@@ -209,41 +232,60 @@ const CourseDetails = () => {
               )}
 
               {tab === 1 && (
+              
                 <Typography sx={{ textAlign: "justify", mt: 2 }}>
                   {course.description}
                 </Typography>
+                
               )}
 
               {tab === 2 && (
                 <Box sx={{ mt: 2 }}>
-                  {course.reviews?.map((review, idx) => (
-                    <Box key={idx} sx={{ mb: 2 }}>
-                      <Typography variant="subtitle2">{review.user}</Typography>
-                      <Typography variant="body2" sx={{ color: "gray" }}>
-                        {review.comment}
-                      </Typography>
-                      <Divider sx={{ my: 1 }} />
-                    </Box>
-                  ))}
+                 <CourseReviews/>
                 </Box>
               )}
 
               {tab === 3 && (
-                <Box sx={{ mt: 2 }}>
-                  <Typography variant="h6">{course.instructor?.name}</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {course.instructor?.bio}
-                  </Typography>
-                </Box>
+            
+
+                   <Box sx={{ mt: 4 }}>
+  <Paper
+    elevation={3}
+    sx={{
+      p: 3,
+      borderRadius: 3,
+      display: "flex",
+      alignItems: "center",
+      gap: 2,
+      backgroundColor: "#f9f9f9",
+    }}
+  >
+    <Avatar
+      src={course.instructor?.avatar || "/default-avatar.png"}
+      alt={course.instructor?.name}
+      sx={{ width: 64, height: 64 }}
+    />
+
+    <Box>
+      <Typography variant="h6" fontWeight={600} color="primary">
+        {course.instructor?.name}
+      </Typography>
+
+      <Typography  sx={{ mt: 0.5, lineHeight: 1.6,fontWeight:"bold", fontSize:18}}>
+        {course.instructor?.bio || "No bio available."}
+      </Typography>
+    </Box>
+  </Paper>
+</Box>
+
               )}
             </Box>
-          </Box>
-
+         
 
         </Grid>
 
         {/* Right Panel */}
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6} sx={{width:isMobile?"100%":"30%"}}>
           <Paper elevation={4} sx={{ borderRadius: 3, overflow: "hidden" }}>
             <Box sx={{ position: "relative", paddingTop: "56.25%" }}>
               <ReactPlayer
@@ -262,11 +304,11 @@ const CourseDetails = () => {
             </Box>
 
             <Box sx={{ p: 3 }}>
-              <Typography variant="h5" color="primary">
+              <Typography variant="h5" color="green" fontWeight={600}>
                 ${course.price}
                 <Typography
                   component="span"
-                  sx={{ ml: 1, textDecoration: "line-through", color: "gray" }}
+                  sx={{ ml: 1, textDecoration: "line-through", color: "red" }}
                 >
                   ${course.oldPrice}
                 </Typography>
@@ -279,17 +321,17 @@ const CourseDetails = () => {
               </Typography>
 
               <Box sx={{ mt: 3 }}>
-                <Button fullWidth variant="contained" color="primary">
-                  Add To Cart
+                <Button fullWidth variant="contained" color="secondary" onClick={()=>navigate('/PaymentPage')}>
+                  Enrolle
                 </Button>
-                <Button
+                {/* <Button
                   fullWidth
                   variant="outlined"
                   color="secondary"
                   sx={{ mt: 1 }}
                 >
                   Buy Now
-                </Button>
+                </Button> */}
               </Box>
 
               <Divider sx={{ my: 3 }} />
@@ -317,7 +359,22 @@ const CourseDetails = () => {
               </Button>
             </Box>
           </Paper>
-        </Grid>
+        
+        
+               
+                <Paper elevation={3} sx={{ p: 2 }}>
+                  <Typography variant="h6" sx={{ mb: 2 }}>
+                    📩 Get in Touch
+                  </Typography>
+                  <TextField label="Enter Name" fullWidth size="small" sx={{ mb: 2 }} />
+                  <TextField label="Enter your mail" fullWidth size="small" sx={{ mb: 2 }} />
+                  <TextField label="Message" fullWidth multiline rows={3} size="small" sx={{ mb: 2 }} />
+                  <Button fullWidth variant="contained" color="primary">
+                    SEND MESSAGE
+                  </Button>
+                </Paper>
+              
+      </Grid>
       </Grid>
     </Box>
   );
