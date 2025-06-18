@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Typography,
@@ -7,10 +7,10 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
+import Aos from "aos";
 
-// data/subjects.js
 export const subjects = [
-  {
+   {
     title: "Business Studies",
     desc: "Business is succes",
     icon: "📈",
@@ -72,52 +72,65 @@ export const subjects = [
     desc: "Science is power",
     icon: "🎯",
   },
- 
 ];
 
 const PopularSubjects = () => {
+   useEffect(() => {
+      Aos.init({ duration: 1500, once: true });
+    }, []);
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box sx={{ px: 7, py: 4, background: "linear-gradient(to bottom, #f9f5fd, #eee5ff)" }}>
+    <Box  
+      sx={{
+        px: isMobile ? 2 : isTablet ? 4 : 7,
+        py: isMobile ? 3 : 5,
+       
+        background: "linear-gradient(to bottom, #f9f5fd, #eee5ff)",
+      }}
+    >
       <Typography
-        variant="h4"
+        variant={isMobile ? "h5" : "h4"}
         fontWeight="bold"
+        align="center"
+         color="error"
         sx={{
           mb: 4,
-          position: "relative",
-          display: "inline-block",
-          color: "#000",
-        }}
-      >
-        Populer Subjects
       
+          position: "relative",
+        }}
+        data-aos="fade-up"
+      >
+        Popular Subjects
       </Typography>
 
-      <Grid container spacing={5} >
+      <Grid container spacing={isMobile ? 2 : 4}   justifyContent={"center"} data-aos="fade-up">
         {subjects.map((subject, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
             <Paper
               elevation={3}
               sx={{
-                p: 4,
+                p: isMobile ? 2 : 4,
                 textAlign: "center",
                 borderRadius: 3,
-                minHeight: 160,
+                minHeight: isMobile ? 120 : 160,
                 transition: "transform 0.3s",
                 "&:hover": {
                   transform: "translateY(-5px)",
                 },
-              }}
+              }} data-aos="fade-up"
             >
-              <Box fontSize={40} mb={1}>
+              <Box fontSize={isMobile ? 30 : 40} mb={1}>
                 {subject.icon}
               </Box>
-              <Typography fontWeight="bold" gutterBottom>
+              <Typography fontWeight="bold" fontSize={isMobile ? "1rem" : "1.1rem"}>
                 {subject.title}
               </Typography>
-              <Typography color="text.secondary">{subject.desc}</Typography>
+              <Typography color="text.secondary" fontSize={isMobile ? "0.85rem" : "1rem"}>
+                {subject.desc}
+              </Typography>
             </Paper>
           </Grid>
         ))}

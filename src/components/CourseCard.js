@@ -1,5 +1,5 @@
 // components/CourseCard.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Card, CardMedia, CardContent, Typography, Box,
   Avatar, Rating, Chip
@@ -7,18 +7,27 @@ import {
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { Link } from "react-router-dom";
+import Aos from "aos";
 
 const CourseCard = ({ course, index }) => {
+   useEffect(() => {
+      Aos.init({ duration: 1000, once: true });
+    }, []);
   return (
     <Link to={`/course/${index}`} style={{ textDecoration: "none" }}>
-      <Card sx={{ borderRadius: 3, p: 1, width: "100%", height: "100%" }}>
+      
+      <Card sx={{ borderRadius: 3, p: 1, width: "100%", height: "100%", transition: "0.3s", 
+              ":hover": { transform: "translateY(-5px)" },
+             }} data-aos="fade-up">
         <Box sx={{ position: "relative" }}>
           <CardMedia
             component="img"
             height="160"
             image={course.image}
             alt={course.title}
-            sx={{ borderRadius: 2 }}
+            sx={{ borderRadius: 2 ,
+              
+            }}
           />
           <Chip
             label={course.category}
