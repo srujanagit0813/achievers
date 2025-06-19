@@ -15,14 +15,21 @@ import HomePage from './pages/HomePage';
 import PerfectCourseSection from './components/PerfectCourseSection';
 import StartQuizPage from './pages/StartQuizPage';
 import ContactUs from './components/ContactUs';
-import Appbar from './components/Appbar';
 import { useLocation } from "react-router-dom";
 import PaymentPage from './pages/PaymentPage';
 import SuccessPage from './pages/SuccessPage';
 import QuizQuestions from './components/QuizQuestions';
 import QuizResult from './components/QuizResult';
 
+import DashboardPage from './components/Dashboards/AdminDashboard/DashboardPage'
+import UserProfilePage from './components/Dashboards/AdminDashboard/UserProfilePage';
+import ChatDashboard from './components/Dashboards/AdminDashboard/ChatDashboard'
 
+import ReviewsPage from './components/Dashboards/AdminDashboard/ReviewsPage';
+import MyCoursesPage from './components/Dashboards/AdminDashboard/MyCoursesPage';
+import OrderHistoryPage from './components/Dashboards/AdminDashboard/OrderHistoryPage';
+import QuizAttemptsPage from './components/Dashboards/AdminDashboard/QuizAttemptsPage';
+import AnnouncementsPage from './components/Dashboards/AdminDashboard/announcements';
 function App() {
   const hideNavbarRoutes = ["/login", "/signup", "/admin"];
    const location = useLocation();
@@ -33,9 +40,9 @@ function App() {
   
   return (
     <div className="App">
-     {/* {showNavbar && <Navbar/>}  */}
+    
          {!hideNavbar && <Navbar />}
-      {/* {!hideNavbarRoutes.includes(location.pathname) && <Appbar />} */}
+     
         <Routes>
            <Route path="/" element={<HomePage />} />
         {/* <Route path="/" element={<Landingpage />} /> */}
@@ -56,6 +63,29 @@ function App() {
   <Route path="/view-all-courses" element={<PerfectCourseSection/>}/>
    <Route path="/PaymentPage" element={<PaymentPage/>}/>
    <Route path="/success" element={<SuccessPage/>}/>
+
+
+          
+
+<Route path="/Dashboard/*" element={<DashboardPage />}>
+             <Route path="UserProfilePage" element={<UserProfilePage />} />
+             <Route path="chat" element={<ChatDashboard />} />
+             {/* <Route path="wishlist" element={<CourseDashboard />} /> */}
+             <Route path="reviews" element={<ReviewsPage />} />
+             <Route path="QuizAttemptPage" element={<QuizAttemptsPage />} />
+             <Route path="OrderHistoryPage" element={<OrderHistoryPage />} />
+             <Route path="MyCoursesPage" element={<MyCoursesPage />} />
+             <Route path="AnnouncementsPage" element={<AnnouncementsPage />} />
+
+
+
+
+
+
+          </Route>
+
+
+
 
        </Routes>
     </div>
