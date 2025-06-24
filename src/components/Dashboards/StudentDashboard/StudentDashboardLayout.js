@@ -1,7 +1,10 @@
 import React from "react";
 import { Box, Button, Avatar, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import Sidebar from "./Sidebar";
+
+import StudentSidebar from "./StudentSidebar";
+import { Outlet } from "react-router-dom";
+
 
 // Layout will handle Header + Sidebar + Main
 function Layout({ children, role = "Instructor" }) {
@@ -11,10 +14,10 @@ function Layout({ children, role = "Instructor" }) {
       <Box
         sx={{ bgcolor: "#6a1b9a", borderRadius: 3, p: 3, display:'flex',
                alignItems:'center', justifyContent:'space-between',
-               flexWrap:'wrap', color:'white',width:"93%",marginLeft:"30px",mt:12}}
+               flexWrap:'wrap', color:'white',width:"93%",marginLeft:"30px",marginTop:"5%"}}
       >
         <Box display="flex" alignItems="center">
-          <Avatar src="https://randomuser.me/api/portraits/men/32.jpg" sx={{ width: 64, height: 64, mr: 2 }}/>
+          <Avatar src="https://i.pravatar.cc/300" sx={{ width: 64, height: 64, mr: 2 }}/>
           <Box>
             <Typography variant="body1">Hello</Typography>
             <Typography variant="h6" fontWeight="bold">
@@ -42,14 +45,15 @@ function Layout({ children, role = "Instructor" }) {
       <Box sx={{ p: 4, bgcolor: "#f4f4f9", minHeight:'100vh', display:'flex', gap:4 }}>
         {/* Sidebar on the left */}
         <Box sx={{ flex:'0 0 250px' }}>
-          <Sidebar role={role} />
+          <StudentSidebar role={role} />
         </Box>
 
         {/* Main content on the right */}
         <Box sx={{ flex:'1',marginLeft:'5px' }}>
-          {children}
+          <Outlet/>
         </Box>
       </Box>
+    
     </>
   )
 }

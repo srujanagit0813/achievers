@@ -72,9 +72,10 @@ const testimonials = [
 const Appbar = () => {
   
   const navigate = useNavigate();
-
+  const [anchorEl, setAnchorEl] = useState(null); // for small screen menu
+  const [dashboardAnchorEl, setDashboardAnchorEl] = useState(null); // for dashboard dropdown
   // const handleContactClick = () => navigate('/contact');
-const [anchorEl, setAnchorEl] = React.useState(null);
+
   const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
   const handleMenuClose = () => setAnchorEl(null);
   const handleContactClick = () => {
@@ -82,7 +83,15 @@ const [anchorEl, setAnchorEl] = React.useState(null);
      navigate('/contact')
   };
  
+ 
 
+  const handleDashboardMenuOpen = (event) => setDashboardAnchorEl(event.currentTarget);
+  const handleDashboardMenuClose = () => setDashboardAnchorEl(null);
+
+  const handleDashboardNavigate = (path) => {
+    handleDashboardMenuClose();
+    navigate(path);
+  };
  
   
   return (
@@ -130,6 +139,25 @@ const [anchorEl, setAnchorEl] = React.useState(null);
         >
           AboutUs
         </Button>
+
+        <Box>
+            <Button
+              variant="text"
+              sx={{ color: '#000', fontWeight: 500, textTransform: 'none', '&:hover': { color: '#ff9800', background: 'none' } }}
+              onClick={handleDashboardMenuOpen}
+            >
+              Dashboard
+            </Button>
+            <Menu
+              anchorEl={dashboardAnchorEl}
+              open={Boolean(dashboardAnchorEl)}
+              onClose={handleDashboardMenuClose}
+            >
+              <MenuItem onClick={() => handleDashboardNavigate('/dashboard/admin')}>Admin</MenuItem>
+              <MenuItem onClick={() => handleDashboardNavigate('/dashboard/instructor')}>Instuctor</MenuItem>
+              <MenuItem onClick={() => handleDashboardNavigate('/dashboard/student')}>Student</MenuItem>
+            </Menu>
+          </Box>
 
         <Button
           variant="contained"

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Avatar, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import Sidebar from "./Sidebar";
+import Sidebar from "./InstructorSidebar";
 
 // Layout will handle Header + Sidebar + Main
 function Layout({ children, role = "Instructor" }) {

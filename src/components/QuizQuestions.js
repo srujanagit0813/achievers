@@ -1,46 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { Box, Paper, Button, Typography, Radio, RadioGroup, FormControlLabel, LinearProgress, Stack } from "@mui/material";
+import {
+  Box,
+  Paper,
+  Button,
+  Typography,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  LinearProgress,
+  Stack,
+  useMediaQuery,
+  useTheme
+} from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-
-// Mock questions
-const questions = [
-  { id: 1, question: "Who invented Javascript?", options: ["Brendan Eich", "Mark Zuckerberg", "Bill Gates", "Steve Jobs"], answer: "Brendan Eich" },
-  { id: 2, question: "What does React use for UI?", options: ["JSX", "TSX", "HTML", "XML"], answer: "JSX" },
-  { id: 3, question: "Who develops React?", options: ["Google", "Amazon", "Meta (formerly Facebook)", "Microsoft"], answer: "Meta (formerly Facebook)" },
-  { id: 4, question: "What hook lets you manage state in functional components?", options: ["useEffect", "useState", "useReducer", "useCallback"], answer: "useState" },
-  { id: 5, question: "What does DOM stand for?", options: ["Document Object Model", "Data Object Model", "Dynamic Object Model", "Document Oriented Model"], answer: "Document Object Model" },
-  { id: 6, question: "How do you create a React component?", options: ["function MyComp()", "class MyComp extends React.Component", "Both A and B", "None"], answer: "Both A and B" },
-  { id: 7, question: "What is a prop in React?", options: ["A method", "A component's internal state", "A way to pass data from parent to child", "A side effects handler"], answer: "A way to pass data from parent to child" },
-  { id: 8, question: "How to handle side effects in React?", options: ["useState", "useCallback", "useEffect", "useMemo"], answer: "useEffect" },
-  { id: 9, question: "What is JSX?", options: ["JavaScript Standard XML", "JavaScript and HTML hybrid", "JSON scripting format", "Java Servlet eXtension"], answer: "JavaScript and HTML hybrid" },
-  { id: 10, question: "How do you lift state up in React?", options: ["Using useEffect", "Using context API", "Moving state to a parent component", "Using ref"], answer: "Moving state to a parent component" },
-  { id: 11, question: "What is a key in React?", options: ["A unique identifier for list items", "A password for components", "A literal keyword in JSX", "A way to destroy components"], answer: "A unique identifier for list items" },
-  { id: 12, question: "How to perform conditional rendering in React?", options: ["Using if-else or ternary operator", "Using for loop", "Using API call", "Using context"], answer: "Using if-else or ternary operator" },
-  { id: 13, question: "What is a custom hook?", options: ["A special state variable", "A reuseable function that starts with use", "A wrapper for components", "A directory structure"], answer: "A reuseable function that starts with use" },
-  { id: 14, question: "How to optimize performance in React?", options: ["Using useMemo and useCallback", "Using for loop", "Using setState frequently", "Using API calls directly"], answer: "Using useMemo and useCallback" },
-  { id: 15, question: "What does React Router do?", options: ["Manages state", "Handles routing in a single page application", "Compiles code faster", "Provides styling"], answer: "Handles routing in a single page application" },
-  { id: 16, question: "How to apply styling in React?", options: ["Using CSS files", "Using styled-components", "Using Material-UI", "All of the above"], answer: "All of the above" },
-  { id: 17, question: "What is a Pure Component?", options: ["A component without state", "A component with shallow comparison for performance", "A wrapper for API calls", "A directory"], answer: "A component with shallow comparison for performance" },
-  { id: 18, question: "How to handle form submission in React?", options: ["Using onClick", "Using onSubmit event on form tag", "Using setState directly", "Using ref"], answer: "Using onSubmit event on form tag" },
-  { id: 19, question: "What is a Higher-Order Component (HOC)?", options: ["A component that renders another component", "A custom hook", "A directory structure", "A state"], answer: "A component that renders another component" },
-
-
-  { id: 20, question: "How to debug React components?", options: ["Using console.log", "Using React Developer Tools", "Using break points in code", "All of the above"], answer: "All of the above" }
-];
 
 function QuizQuestions() {
   const location = useLocation();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
-  const { examTitle, date } = location.state || {};
+  const {
+    quizLabel,
+    questions = [],
+    duration = 30,
+    date
+  } = location.state || {};
 
   const [responses, setResponses] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(duration * 60);
 
   useEffect(() => {
     if (timeLeft <= 0) {
       handleSubmit();
+      return;
     }
     const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     return () => clearInterval(timer);
@@ -51,76 +46,221 @@ function QuizQuestions() {
     questions.forEach((q) => {
       if (responses[q.id] === q.answer) score++;
     });
-
-    navigate('/quiz-result', { state: { responses, score, total: questions.length, examTitle } });
+    navigate("/quiz-result", {
+      state: {
+        responses,
+        score,
+        total: questions.length,
+        examTitle: quizLabel,
+        date,
+        questions
+      }
+    });
   };
-  
+
   const handleChange = (questionId, answer) => {
     setResponses((prev) => ({
       ...prev,
-      [questionId]: answer,
-    }))
-  }
-  
-  const handleNext = () => setCurrentIndex((prev) => Math.min(prev + 1, questions.length - 1));  
-  const handlePrevious = () => setCurrentIndex((prev) => Math.max(prev - 1, 0));  
+      [questionId]: answer
+    }));
+  };
 
+  const handleNext = () => setCurrentIndex((prev) => Math.min(prev + 1, questions.length - 1));
+  const handlePrevious = () => setCurrentIndex((prev) => Math.max(prev - 1, 0));
   const progress = ((currentIndex + 1) / questions.length) * 100;
 
-  if (!examTitle) {
-    return <Typography color="error" variant="h6" align="center" sx={{ mt: 4 }}>Invalid Quiz</Typography>;
+  if (!quizLabel || !Array.isArray(questions) || !questions.length) {
+    return (
+      <Typography color="error" variant="h6" align="center" sx={{ mt: 4 }}>
+        Invalid or Missing Quiz Questions
+      </Typography>
+    );
   }
-  
+
+  if (!questions[currentIndex]) {
+    return (
+      <Typography color="error" variant="body1" align="center" sx={{ mt: 4 }}>
+        Question not found
+      </Typography>
+    );
+  }
+
   return (
-    <Box sx={{ p: 4, maxWidth:'600px', margin:'auto' }}>
-      <Typography variant="h4" color="primary" mb={2}>
-        {examTitle} Quiz
+    <Box
+      sx={{
+        mt: 2,
+        p: isMobile ? 2 : 3,
+       
+        minHeight: "100vh",
+        backgroundColor: "#f4f6f8",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center"
+      }}
+    >
+      <Typography
+        variant={isMobile ? "h5" : "h4"}
+        sx={{
+          fontWeight: "bold",
+          mb: 2,
+          color: "#333",
+          textAlign: "center"
+        }}
+      >
+        {quizLabel} Quiz
       </Typography>
 
-      <Typography variant="body1" color="text.secondary">
+      <Typography
+        variant="subtitle1"
+        sx={{ mb: 1, color: "#555", textAlign: "center" }}
+      >
         Question {currentIndex + 1} of {questions.length}
       </Typography>
 
-      <LinearProgress variant="determinate" value={progress} sx={{ mt: 1, mb: 2, height:'10px', borderRadius:'5px'}} />
+      <LinearProgress
+        variant="determinate"
+        value={progress}
+        sx={{
+          width: isMobile ? "90%" : "70%",
+          mb: 4,
+          height: 8,
+          borderRadius: 4
+        }}
+      />
 
-      <Paper elevations={6} sx={{ p: 4, borderRadius:'20px', boxShadow:'0 4px 30px #0003' }}>
-        <Typography variant="h6" mb={2}>
-          {questions[currentIndex].question}
-        </Typography>
+      <Paper
+        elevation={4}
+        sx={{
+          p: isMobile ? 3: 3,
+          borderRadius: 3,
+          width: "100%",
+          maxWidth: "900px",
+          backgroundColor: "#fff",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
+          transition: "transform 0.3s ease",
+          "&:hover": {
+            transform: "scale(1.01)"
+          }
+        }}
+      >
+        <Box>
+          <Typography
+            variant={isMobile ? "subtitle1" : "h6"}
+            sx={{ fontWeight: "bold", mb: 2 }}
+          >
+            {questions[currentIndex].question}
+          </Typography>
 
-        <RadioGroup
-          name={`question-${currentIndex}`}
-          onChange={(e) => handleChange(questions[currentIndex].id, e.target.value)}
-          value={responses[questions[currentIndex].id]}
+          <RadioGroup
+            name={`question-${currentIndex}`}
+            onChange={(e) =>
+              handleChange(questions[currentIndex].id, e.target.value)
+            }
+            value={responses[questions[currentIndex].id] || ""}
+          >
+            {questions[currentIndex].options.map((opt, idx) => (
+              <FormControlLabel
+                key={idx}
+                control={
+                  <Radio
+                    sx={{
+                      color: "#1976d2",
+                      "&.Mui-checked": { color: "#1976d2" }
+                    }}
+                  />
+                }
+                label={opt}
+                value={opt}
+                sx={{
+                  mb: 1,
+                  border: "1px solid #ddd",
+                  borderRadius: 2,
+                  px: 2,
+                  py: 1.2,
+                  width: "100%",
+                  transition: "background-color 0.2s, transform 0.2s",
+                  "&:hover": {
+                    backgroundColor: "#f0f0f0",
+                    transform: "scale(1.01)"
+                  }
+                }}
+              />
+            ))}
+          </RadioGroup>
+        </Box>
+
+        <Stack
+          direction={isMobile ? "column" : "row"}
+          spacing={2}
+          justifyContent="center"
+          alignItems="center"
+          sx={{ mt: 3 }}
         >
-          {questions[currentIndex].options?.map((opt, idx) => (
-            <FormControlLabel key={idx} control={<Radio color="primary" />} label={opt} value={opt} />
-          ))}
-        </RadioGroup>
-
-        <Stack direction="row" spacing={2} sx={{ mt: 3 }}>
-          <Button variant="outlined" color="primary" onClick={handlePrevious} disabled={currentIndex <= 0}>
+          <Button
+            variant="outlined"
+            onClick={handlePrevious}
+            disabled={currentIndex <= 0}
+            sx={{
+              borderRadius: 3,
+              px: 4,
+              textTransform: "none",
+              width: isMobile ? "100%" : "auto"
+            }}
+          >
             Previous
           </Button>
 
           {currentIndex < questions.length - 1 ? (
-            <Button variant="contained" color="primary" onClick={handleNext}>
+            <Button
+              variant="contained"
+              onClick={handleNext}
+              sx={{
+                borderRadius: 3,
+                px: 4,
+                textTransform: "none",
+                width: isMobile ? "100%" : "auto"
+              }}
+            >
               Next
             </Button>
           ) : (
-            <Button variant="contained" color="success" onClick={handleSubmit}>
+            <Button
+              variant="contained"
+              onClick={handleSubmit}
+              sx={{
+                borderRadius: 3,
+                px: 4,
+                backgroundColor: "#388e3c",
+                textTransform: "none",
+                width: isMobile ? "100%" : "auto",
+                "&:hover": { backgroundColor: "#2e7d32" }
+              }}
+            >
               Submit Quiz
             </Button>
           )}
-
         </Stack>
 
-        <Typography variant="body2" color="error" sx={{ mt: 3 }}>
-          Time left: {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2,'0')}
+        <Typography
+          variant="body2"
+          align="center"
+          sx={{
+            mt: 3,
+            color: "#d32f2f",
+            fontWeight: "bold",
+            fontSize: isMobile ? "0.9rem" : "1rem"
+          }}
+        >
+          Time Left: {Math.floor(timeLeft / 60)}:
+          {String(timeLeft % 60).padStart(2, "0")}
         </Typography>
       </Paper>
     </Box>
-  )
+  );
 }
 
 export default QuizQuestions;

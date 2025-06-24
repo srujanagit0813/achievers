@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Typography, Grid, Paper } from "@mui/material";
 import { EmojiEvents, MenuBook, Groups, Public } from "@mui/icons-material";
-import Layout from './Layout';
-import TotalFeedbacks from './TotalFeedbacks';
+import Layout from "./Layout";
+import TotalFeedbacks from "./TotalFeedbacks";
 import Dashboard from "./Dashboard";
 import { Outlet, useLocation } from "react-router-dom";
 

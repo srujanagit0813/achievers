@@ -19,8 +19,9 @@ import VideoCallIcon from '@mui/icons-material/VideoCall';
 import CallIcon from '@mui/icons-material/Call';
 import ChatIcon from '@mui/icons-material/Chat';
 import StarIcon from '@mui/icons-material/Star';
-import TopbarPage from './TopbarPage';
-import Sidebar from './Sidebar';
+import StudentTopbarPage from './StudentTopbarPage';
+import StudentSidebar from './StudentSidebar';
+
 
 const messages = [
   { name: 'Rex Allen', text: 'Hey, How are you?', time: '12 min' },
@@ -42,19 +43,19 @@ const chatHistory = [
   { name: 'Bradshaw', msg: 'Dolor sit amet consectetur', time: '4:30 PM', position: 'left' },
 ];
 
-export default function ChatDashboard() {
+export default function StudentChatDashboard() {
   return (
-    <Box sx={{ minHeight: '100vh', bgcolor: '#f4f6f8', py: 4, px: { xs: 2, md: 6 } }}>
+    <Box sx={{ minHeight: '100vh',  mt:4,bgcolor: '#f4f6f8', py: 4, px: { xs: 2, md: 6 } }}>
      
       {/* Main Content */}
-      <Grid container spacing={3}>
+      <Grid container spacing={27}>
         {/* Left Messages List */}
         <Grid item xs={12} md={4}>
           <Paper
             elevation={3}
-            sx={{ p: 3, height: '100%', borderRadius: '16px', maxHeight: 600, overflowY: 'auto' }}
+            sx={{ p: 3, height: '100%', borderRadius: '16px', maxHeight: 600, overflowY: 'auto',mt:-6,width:"450px",ml:-6 }}
           >
-            <Typography variant="h6" fontWeight="bold" color="#3f51b5" mb={2}>
+            <Typography variant="h5" fontWeight="bold" color="#3f51b5" mb={2}>
               Messages
             </Typography>
             <List>
@@ -69,7 +70,7 @@ export default function ChatDashboard() {
                   }}
                 >
                   <ListItemAvatar>
-                    <Avatar src='{https://i.pravatar.cc/15${idx}}' />
+                    <Avatar src={`https://i.pravatar.cc/15${idx}`} />
                   </ListItemAvatar>
                   <ListItemText primary={msg.name} secondary={msg.text} />
                   <Typography variant="caption" color="text.secondary">
@@ -87,9 +88,12 @@ export default function ChatDashboard() {
             elevation={3}
             sx={{
               height: '100%',
+              width:"700px",
               display: 'flex',
               flexDirection: 'column',
               borderRadius: '16px',
+              mt:-6,
+              ml:-24,
             }}
           >
             {/* Chat Header */}

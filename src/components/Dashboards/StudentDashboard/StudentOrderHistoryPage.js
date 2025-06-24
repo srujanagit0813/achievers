@@ -31,12 +31,13 @@ const orders = [
   { id: "#4585", course: "Graphic", date: "May 27, 2024", price: "$200.99", status: "Canceled" },
 ];
 
+// Function to get chip color based on status
 const getStatusColor = (status) => {
   switch (status) {
     case "Success":
       return "success";
     case "Processing":
-      return "info";
+      return "primary";
     case "On Hold":
       return "warning";
     case "Canceled":
@@ -46,48 +47,37 @@ const getStatusColor = (status) => {
   }
 };
 
-function OrderHistoryPage() {
+function StudentOrderHistoryPage() {
   return (
-    <Box sx={{ p: 4, minHeight: "100vh", bgcolor: "#f0f2f5" }}>
-      <Typography variant="h4" mb={3} fontWeight="bold" color="primary.dark">
+    <Box sx={{ p: 4, minHeight: "100vh", bgcolor: "#f9f9f9" }}>
+      <Typography variant="h4" mb={3} fontWeight="bold">
         Order History
       </Typography>
 
-      <TableContainer component={Paper} sx={{ borderRadius: 3, boxShadow: 4 }}>
+      <TableContainer component={Paper} sx={{ borderRadius: 2 }}>
         <Table>
-          <TableHead sx={{ bgcolor: "#e3f2fd" }}>
+          <TableHead sx={{ bgcolor: "#f0f0f0" }}>
             <TableRow>
-              <TableCell align="center"><strong>Order ID</strong></TableCell>
-              <TableCell align="center"><strong>Course Name</strong></TableCell>
-              <TableCell align="center"><strong>Date</strong></TableCell>
-              <TableCell align="center"><strong>Price</strong></TableCell>
-              <TableCell align="center"><strong>Status</strong></TableCell>
+              <TableCell><strong>Order ID</strong></TableCell>
+              <TableCell><strong>Course Name</strong></TableCell>
+              <TableCell><strong>Date</strong></TableCell>
+              <TableCell><strong>Price</strong></TableCell>
+              <TableCell><strong>Status</strong></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {orders.map((order, index) => (
-              <TableRow
-                key={index}
-                hover
-                sx={{
-                  "&:hover": { backgroundColor: "#f9f9f9" },
-                  transition: "background-color 0.3s ease",
-                }}
-              >
-                <TableCell align="center">{order.id}</TableCell>
-                <TableCell align="center">{order.course}</TableCell>
-                <TableCell align="center">{order.date}</TableCell>
-                <TableCell align="center">{order.price}</TableCell>
-                <TableCell align="center">
+              <TableRow key={index}>
+                <TableCell>{order.id}</TableCell>
+                <TableCell>{order.course}</TableCell>
+                <TableCell>{order.date}</TableCell>
+                <TableCell>{order.price}</TableCell>
+                <TableCell>
                   <Chip
                     label={order.status}
                     color={getStatusColor(order.status)}
-                    sx={{
-                      fontWeight: "bold",
-                      width: "100px",
-                      justifyContent: "center",
-                      borderRadius: 2,
-                    }}
+                    size="small"
+                    sx={{ fontWeight: "bold" }}
                   />
                 </TableCell>
               </TableRow>
@@ -95,8 +85,9 @@ function OrderHistoryPage() {
           </TableBody>
         </Table>
       </TableContainer>
+      
     </Box>
   );
 }
 
-export default OrderHistoryPage;
+export default StudentOrderHistoryPage;

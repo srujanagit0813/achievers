@@ -7,9 +7,7 @@ import MaterialDetails from './pages/MaterialDetails';
 import ProfileAccessPage from './pages/ProfileAccessPage';
 import { useState } from 'react';
 import CourseLesson from './pages/CourseLesson';
-import MaterialPage from './pages/MaterialPage';
-import QuizPage from './pages/QuizPage';
-import AssignmentPage from './pages/AssignmentPage';
+
 import ClassPage from './components/QuizzSection';
 import HomePage from './pages/HomePage';
 import PerfectCourseSection from './components/PerfectCourseSection';
@@ -30,6 +28,30 @@ import MyCoursesPage from './components/Dashboards/AdminDashboard/MyCoursesPage'
 import OrderHistoryPage from './components/Dashboards/AdminDashboard/OrderHistoryPage';
 import QuizAttemptsPage from './components/Dashboards/AdminDashboard/QuizAttemptsPage';
 import AnnouncementsPage from './components/Dashboards/AdminDashboard/announcements';
+import CourseQuiz from './pages/CourseQuiz';
+import CourseMaterial from './pages/CourseMaterial';
+import CourseAssignment from './pages/CourseAssignment';
+
+
+import StudentDashboardHome from "./components/Dashboards/StudentDashboard/StudentDashboardHome";
+import StudentUserProfilePage from "./components/Dashboards/StudentDashboard/StudentUserProfilePage";
+import StudentChatDashboard from "./components/Dashboards/StudentDashboard/StudentChatDashboard";
+import StudentCourseDashboard from "./components/Dashboards/StudentDashboard/StudentDashboardSection";
+import StudentReviewsPage from "./components/Dashboards/StudentDashboard/StudentReviewsPage";
+import StudentQuizAttemptsPage from "./components/Dashboards/StudentDashboard/StudentQuizAttemptsPage";
+import StudentOrderHistoryPage from "./components/Dashboards/StudentDashboard/StudentOrderHistoryPage";
+import StudentAssignments from "./components/Dashboards/StudentDashboard/StudentAssignmentDetailsModal";
+import StudentEnrolledCourses from './components/Dashboards/StudentDashboard/StudentEnrolledCourses';
+import StudentDashboardLayout from './components/Dashboards/StudentDashboard/StudentDashboardLayout';
+import InstructorDashboardPage from './components/Dashboards/InstructorDashboard/InstructorDashboardPage';
+import CoursesPage from './components/Dashboards/InstructorDashboard/CoursesPage';
+import CreateCoursePage from './components/Dashboards/InstructorDashboard/CreateCoursePage';
+import ManageAssignmentsPage from './components/Dashboards/InstructorDashboard/ManageAssignmentsPage';
+import QuizManagementPage from './components/Dashboards/InstructorDashboard/QuizManagementPage';
+import AnalyticsPage from './components/Dashboards/InstructorDashboard/AnalyticsPage';
+import MessagesPage from './components/Dashboards/InstructorDashboard/MessagesPage';
+import SubmissionsPage from './components/Dashboards/InstructorDashboard/SubmissionsPage';
+import CourseDashboard from './components/Dashboards/AdminDashboard/CourseDashboard';
 function App() {
   const hideNavbarRoutes = ["/login", "/signup", "/admin"];
    const location = useLocation();
@@ -50,9 +72,9 @@ function App() {
         <Route path="/profile-access" element={<ProfileAccessPage setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/course/:id" element={<CourseDetails />} />
          <Route path="/CourseLesson/:id" element={<CourseLesson />} />
-          <Route path="/course/:id/material" element={<MaterialPage/>} />
-        <Route path="/course/:id/quiz" element={<QuizPage />} />
-        <Route path="/course/:id/assignment" element={<AssignmentPage />} />
+          <Route path="/course/:id/quiz" element={<CourseQuiz />} />
+       <Route path="/course/:id/material" element={<CourseMaterial />} />
+      <Route path="/course/:id/assignment" element={<CourseAssignment />} /> 
         <Route path="/materials/:id" element={<MaterialDetails />} />
         <Route path='/class-page' element={<ClassPage/>}/>
         <Route path="/contact" element={<ContactUs />} />
@@ -63,27 +85,45 @@ function App() {
   <Route path="/view-all-courses" element={<PerfectCourseSection/>}/>
    <Route path="/PaymentPage" element={<PaymentPage/>}/>
    <Route path="/success" element={<SuccessPage/>}/>
-
+       
 
           
 
 <Route path="/Dashboard/*" element={<DashboardPage />}>
              <Route path="UserProfilePage" element={<UserProfilePage />} />
              <Route path="chat" element={<ChatDashboard />} />
-             {/* <Route path="wishlist" element={<CourseDashboard />} /> */}
+             <Route path="wishlist" element={<CourseDashboard />} />
              <Route path="reviews" element={<ReviewsPage />} />
              <Route path="QuizAttemptPage" element={<QuizAttemptsPage />} />
              <Route path="OrderHistoryPage" element={<OrderHistoryPage />} />
              <Route path="MyCoursesPage" element={<MyCoursesPage />} />
              <Route path="AnnouncementsPage" element={<AnnouncementsPage />} />
 
+             </Route>
 
-
-
-
-
+             <Route path="/dashboard/student/*" element={<StudentDashboardLayout />}>
+                   <Route index element={<StudentDashboardHome/>} /> {/* student default page */}
+                       <Route path="UserProfilePage" element={<StudentUserProfilePage />} />
+                       <Route path="chat" element={<StudentChatDashboard />} />
+                      <Route path="StudentEnrolledCourses" element={<StudentEnrolledCourses />} />
+                         <Route path="wishlist" element={<StudentCourseDashboard />} />
+                        <Route path="reviews" element={<StudentReviewsPage />} />
+                           <Route path="QuizAttemptPage" element={<StudentQuizAttemptsPage />} />
+                         <Route path="OrderHistoryPage" element={<StudentOrderHistoryPage />} />
+                        <Route path="assignments" element={<StudentAssignments />} />
           </Route>
 
+          <Route path="/InstructorDashboard/*" element={<InstructorDashboardPage />}>
+  <Route path="courses" element={<CoursesPage />} />
+  <Route path="create-course" element={<CreateCoursePage />} />
+  <Route path="manage-assignments" element={<ManageAssignmentsPage />} />
+  <Route path="submissions" element={<SubmissionsPage />} />
+  <Route path="quiz-management" element={<QuizManagementPage />} />
+  <Route path="announcements" element={<AnnouncementsPage />} />
+  <Route path="analytics" element={<AnalyticsPage />} />
+  <Route path="messages" element={<MessagesPage />} />
+
+        </Route>
 
 
 

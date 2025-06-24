@@ -87,17 +87,17 @@ const pieChartData = {
   ],
 };
 
-const Dashboard = () => {
+const StudentDashboard = () => {
   const [timeFilter, setTimeFilter] = useState("Today");
   const theme = useTheme();
 
   return (
-    <Box p={2} sx={{ width: "100%" }}>
+    <Box p={2} sx={{marginLeft:"-28px",width:"100%",height:"30px"}}>
       <Paper elevation={3} sx={{ borderRadius: 4, p: 3 }}>
         <Grid container spacing={3}>
           {/* Line Chart */}
           <Grid item xs={12} md={8}>
-            <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+            <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
               <Typography variant="h6" fontWeight="bold">Dashboard</Typography>
               <FormControl size="small">
                 <Select value={timeFilter} onChange={(e) => setTimeFilter(e.target.value)}>
@@ -108,7 +108,7 @@ const Dashboard = () => {
                 </Select>
               </FormControl>
             </Box>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="101%" height={200}>
               <LineChart data={lineChartData[timeFilter]}>
                 <XAxis dataKey="label" />
                 <YAxis />
@@ -125,8 +125,8 @@ const Dashboard = () => {
           </Grid>
 
           {/* Doughnut Chart */}
-          <Grid item xs={12} md={8}>
-            <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+          {/* <Grid item xs={12} md={4}>
+            <Box display="flex" justifyContent="space-between" alignItems="right" mb={2}>
               <Typography variant="h6" fontWeight="bold">Traffic</Typography>
               <FormControl size="small">
                 <Select value={timeFilter} onChange={(e) => setTimeFilter(e.target.value)}>
@@ -137,27 +137,26 @@ const Dashboard = () => {
                 </Select>
               </FormControl>
             </Box>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="101%" height={400}>
               <PieChart>
                 <Pie
                   data={pieChartData[timeFilter]}
                   innerRadius={70}
                   outerRadius={100}
-                  paddingAngle={5}
                   dataKey="value"
                 >
                   {pieChartData[timeFilter].map((entry, index) => (
-                    <Cell key={`cell-${index}} fill={COLORS[index % COLORS.length]`} />
+                    <Cell key={cell-${index}} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Legend verticalAlign="middle" align="right" layout="vertical" />
+                <Legend verticalAlign="middle" align="center" layout="vertical" />
               </PieChart>
             </ResponsiveContainer>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Paper>
     </Box>
   );
 };
 
-export default Dashboard;
+export default StudentDashboard;

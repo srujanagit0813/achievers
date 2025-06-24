@@ -108,7 +108,7 @@ function AnnouncementsPage() {
                   flexDirection: "column",
                   justifyContent: "space-between",
                   backgroundColor: "#ffffff",
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                  boxShadow: "0 4px 10px rgba(32, 10, 10, 0.1)",
                   transition: "all 0.3s ease",
                   "&:hover": {
                     transform: "translateY(-5px)",

@@ -93,7 +93,7 @@ const categoryColors = {
   Draft: "default",
 };
 
-function MyCoursesPage() {
+function CoursesPage() {
   return (
     <Box sx={{ p: 4, bgcolor: "#f9f9f9", minHeight: "100vh" }}>
       <Typography variant="h4" fontWeight="bold" mb={4}>
@@ -199,4 +199,4 @@ const handleUploadCourse = (course) => {
   console.log("Upload Course:", course.title);
 };
 
-export default MyCoursesPage;
+export default CoursesPage;
