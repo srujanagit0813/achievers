@@ -5,6 +5,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  useMediaQuery,
 } from "@mui/material";
 import {
   Dashboard as DashboardIcon,
@@ -22,6 +23,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 const StudentSidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   const isActive = (path) => location.pathname === path;
 
@@ -35,16 +37,17 @@ const StudentSidebar = () => {
   return (
     <Box
       sx={{
-        minWidth: "250px",
+        minWidth: { xs: "100%", sm: "250px" }, // Full width on mobile, fixed on larger screens
         bgcolor: "#ffffff",
         boxShadow: 2,
-        minHeight: "108vh",
+        minHeight: "50vh",
+        height:"70vh",
         p: 2,
-         
-        marginLeft: "40px",
+        mt: { xs: 2, md: 8 },
+        mx: { xs: 0, sm: "40px" }, // Remove left margin on mobile
       }}
     >
-      <List sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+      <List sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
         <ListItem
           button
           onClick={() => navigate("/dashboard/student")}

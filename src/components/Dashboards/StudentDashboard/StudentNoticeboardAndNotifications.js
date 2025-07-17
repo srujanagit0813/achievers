@@ -1,4 +1,3 @@
-// NoticeboardAndNotifications.jsx
 import React, { useState } from "react";
 import {
   Box,
@@ -16,6 +15,7 @@ import { motion } from "framer-motion";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
+// Sample Data
 const noticeData = Array.from({ length: 15 }).map((_, i) => ({
   img: `https://source.unsplash.com/80x60/?notice,${i}`,
   text: `Notice ${i + 1}: Important update for all users. Please read carefully.`,
@@ -27,6 +27,7 @@ const notifications = Array.from({ length: 15 }).map((_, i) => ({
   time: `${i + 1} min ago`,
 }));
 
+// Animation
 const fadeInVariant = {
   hidden: { opacity: 0, y: 20 },
   visible: (i) => ({
@@ -36,25 +37,16 @@ const fadeInVariant = {
   }),
 };
 
+// Notice Item
 const NoticeItem = ({ img, text, index }) => (
-  <motion.div
-    custom={index}
-    variants={fadeInVariant}
-    initial="hidden"
-    animate="visible"
-  >
+  <motion.div custom={index} variants={fadeInVariant} initial="hidden" animate="visible">
     <Box
       display="flex"
       alignItems="center"
       py={1.2}
       px={2}
       sx={{
-        "&:hover": {
-          backgroundColor: "#e3f2fd",
-          cursor: "pointer",
-          borderRadius: 2,
-          transform: "scale(1.01)",
-        },
+        "&:hover": { backgroundColor: "#e3f2fd", cursor: "pointer", borderRadius: 2, transform: "scale(1.01)" },
         transition: "all 0.3s ease",
         borderRadius: 2,
       }}
@@ -65,42 +57,30 @@ const NoticeItem = ({ img, text, index }) => (
   </motion.div>
 );
 
+// Notification Item
 const NotificationItem = ({ icon, message, time, index }) => (
-  <motion.div
-    custom={index}
-    variants={fadeInVariant}
-    initial="hidden"
-    animate="visible"
-  >
+  <motion.div custom={index} variants={fadeInVariant} initial="hidden" animate="visible">
     <Box
       display="flex"
       alignItems="center"
       py={1.2}
       px={2}
       sx={{
-        "&:hover": {
-          backgroundColor: "#fce4ec",
-          cursor: "pointer",
-          borderRadius: 2,
-          transform: "scale(1.01)",
-        },
+        "&:hover": { backgroundColor: "#fce4ec", cursor: "pointer", borderRadius: 2, transform: "scale(1.01)" },
         transition: "all 0.3s ease",
         borderRadius: 2,
       }}
     >
       <Avatar src={icon} sx={{ width: 32, height: 32, mr: 2 }} />
       <Box>
-        <Typography fontSize="0.95rem" fontWeight="bold">
-          {message}
-        </Typography>
-        <Typography fontSize="0.8rem" color="text.secondary">
-          {time}
-        </Typography>
+        <Typography fontSize="0.95rem" fontWeight="bold">{message}</Typography>
+        <Typography fontSize="0.8rem" color="text.secondary">{time}</Typography>
       </Box>
     </Box>
   </motion.div>
 );
 
+// Pagination Section
 const ITEMS_PER_PAGE = 5;
 
 const PaginatedSection = ({
@@ -115,16 +95,13 @@ const PaginatedSection = ({
   icon,
 }) => {
   const count = Math.ceil(data.length / ITEMS_PER_PAGE);
-  const paginatedItems = data.slice(
-    (page - 1) * ITEMS_PER_PAGE,
-    page * ITEMS_PER_PAGE
-  );
+  const paginatedItems = data.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   return (
     <Paper
       elevation={3}
       sx={{
-        p: 3,
+        p: { xs: 2, sm: 3 },
         borderRadius: 4,
         backgroundColor: "#ffffff",
         boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
@@ -145,9 +122,7 @@ const PaginatedSection = ({
           >
             {icon}
           </Box>
-          <Typography variant="h6" fontWeight="bold" color={color}>
-            {title}
-          </Typography>
+          <Typography variant="h6" fontWeight="bold" color={color}>{title}</Typography>
         </Box>
         <Box display="flex" alignItems="center">
           <Typography color="primary" fontSize="0.85rem" sx={{ mr: 1 }}>
@@ -180,6 +155,7 @@ const PaginatedSection = ({
   );
 };
 
+// Main Component
 const StudentNoticeboardAndNotifications = () => {
   const [noticePage, setNoticePage] = useState(1);
   const [notifPage, setNotifPage] = useState(1);
@@ -187,7 +163,7 @@ const StudentNoticeboardAndNotifications = () => {
   const [showNotifications, setShowNotifications] = useState(true);
 
   return (
-    <Box p={4} sx={{ backgroundColor: "#f4f6f8", minHeight: "100vh" }}>
+    <Box p={{ xs: 2, sm: 3, md: 4 }} sx={{ backgroundColor: "#f4f6f8", minHeight: "100vh" }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
           <PaginatedSection
@@ -197,9 +173,7 @@ const StudentNoticeboardAndNotifications = () => {
             setPage={setNoticePage}
             show={showNotices}
             toggleShow={() => setShowNotices(!showNotices)}
-            renderItem={(item, idx) => (
-              <NoticeItem {...item} index={idx} key={idx} />
-            )}
+            renderItem={(item, idx) => <NoticeItem {...item} index={idx} key={idx} />}
             color="#0288d1"
             icon={<InfoOutlinedIcon sx={{ color: "#fff", fontSize: "20px" }} />}
           />
@@ -213,9 +187,7 @@ const StudentNoticeboardAndNotifications = () => {
             setPage={setNotifPage}
             show={showNotifications}
             toggleShow={() => setShowNotifications(!showNotifications)}
-            renderItem={(item, idx) => (
-              <NotificationItem {...item} index={idx} key={idx} />
-            )}
+            renderItem={(item, idx) => <NotificationItem {...item} index={idx} key={idx} />}
             color="#c2185b"
             icon={<NotificationsNoneIcon sx={{ color: "#fff", fontSize: "20px" }} />}
           />

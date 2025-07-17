@@ -6,6 +6,7 @@ import {
   Avatar,
   Divider,
   Button,
+  useMediaQuery,
 } from "@mui/material";
 import {
   Email,
@@ -17,8 +18,8 @@ import {
   Edit,
   MenuBook,
 } from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
 
-// Profile data
 const profile = {
   registrationDate: "20, January 2024 9:00 PM",
   firstName: "Michle",
@@ -32,26 +33,30 @@ const profile = {
 };
 
 function StudentUserProfilePage() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
-    // <Box
-    //   sx={{
-    //     minHeight: "100vh",
-    //     bgcolor: "#f0f4f8",
-    //     display: "flex",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //     p: 4,
-    //   }}
-    // >
+    <Box
+      sx={{
+        bgcolor: "#f0f4f8",
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        p: { xs: 2, sm: 4 },
+        mt:2
+      }}
+    >
       <Box
         sx={{
           backgroundColor: "#ffffff",
-          p: 4,
+          p: { xs: 3, sm: 4 },
           borderRadius: 3,
           boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-          width: "90%",
+          width: "100%",
           maxWidth: 900,
-          mt:2
+          mt: 2,
         }}
       >
         <Stack spacing={4} alignItems="center">
@@ -60,93 +65,103 @@ function StudentUserProfilePage() {
             src="https://randomuser.me/api/portraits/men/32.jpg"
             alt={profile.firstName}
             sx={{
-              width: 150,
-              height: 150,
+              width: { xs: 120, sm: 150 },
+              height: { xs: 120, sm: 150 },
               border: "4px solid #1976d2",
               boxShadow: 4,
             }}
           />
 
-          {/* Name & Role */}
+          {/* Name */}
           <Box textAlign="center">
-            <Typography variant="h4" fontWeight="bold" gutterBottom>
+            <Typography variant="h5" fontWeight="bold" gutterBottom>
               {profile.firstName} {profile.lastName}
             </Typography>
-            
           </Box>
-
-         
 
           <Divider sx={{ width: "100%" }} />
 
-          {/* Profile Details One by One */}
+          {/* Profile Details */}
           <Stack spacing={4} width="100%">
             <DetailItem
               icon={<CalendarMonth color="primary" />}
               label="Registered"
               value={profile.registrationDate}
-                            valueFontSize="1.5rem"
-
+              valueFontSize={{ xs: "1rem", sm: "1.3rem" }}
             />
             <DetailItem
               icon={<Person color="primary" />}
               label="Username"
               value={profile.username}
-                            valueFontSize="1.5rem"
-
+              valueFontSize={{ xs: "1rem", sm: "1.3rem" }}
             />
             <DetailItem
               icon={<Email color="primary" />}
               label="Email"
               value={profile.email}
-                            valueFontSize="1.5rem"
-
+              valueFontSize={{ xs: "1rem", sm: "1.3rem" }}
             />
             <DetailItem
               icon={<Phone color="primary" />}
               label="Phone"
               value={profile.phone}
-                            valueFontSize="1.5rem"
-
+              valueFontSize={{ xs: "1rem", sm: "1.3rem" }}
             />
             <DetailItem
               icon={<MenuBook color="primary" />}
               label="Biography"
               value={profile.biography}
-              valueFontSize="1.5rem"
+              valueFontSize={{ xs: "1rem", sm: "1.3rem" }}
             />
-             {/* Action Buttons */}
-          <Stack direction={{ xs: "column", sm: "row" }} spacing={4} sx={{justifyContent:"center",alignItems:"center"}}>
-            <Button variant="contained" color="primary" startIcon={<Edit />}>
-              Edit Profile
-            </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              startIcon={<LockReset />}
+
+            {/* Action Buttons */}
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={2}
+              justifyContent="center"
+              alignItems="center"
+              mt={2}
             >
-              Change Password
-            </Button>
-            <Button
-              variant="outlined"
-              color="success"
-              startIcon={<VpnKey />}
-            >
-              Set Password
-            </Button>
-          </Stack>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<Edit />}
+                fullWidth={isMobile}
+              >
+                Edit Profile
+              </Button>
+              <Button
+                variant="outlined"
+                color="secondary"
+                startIcon={<LockReset />}
+                fullWidth={isMobile}
+              >
+                Change Password
+              </Button>
+              <Button
+                variant="outlined"
+                color="success"
+                startIcon={<VpnKey />}
+                fullWidth={isMobile}
+              >
+                Set Password
+              </Button>
+            </Stack>
           </Stack>
         </Stack>
       </Box>
-    // </Box>
+    </Box>
   );
 }
 
-// Reusable DetailItem component with icon alignment and font size
+// Reusable DetailItem component with responsive font size
 const DetailItem = ({ icon, label, value, valueFontSize = "1rem" }) => (
   <Box display="flex" alignItems="flex-start" gap={1}>
     <Box sx={{ mt: 0.5 }}>{icon}</Box>
-    <Typography variant="body1" sx={{ fontSize: valueFontSize }}>
+    <Typography
+      variant="body1"
+      sx={{ fontSize: valueFontSize, wordBreak: "break-word" }}
+    >
       <strong>{label}:</strong> {value}
     </Typography>
   </Box>

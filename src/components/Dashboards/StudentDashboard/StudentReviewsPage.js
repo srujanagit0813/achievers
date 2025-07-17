@@ -43,7 +43,7 @@ const reviewsData = {
       date: "October 30, 2213",
       course: "Speaking Korean for Beginners",
       reviews: 9,
-      feedback: "i want reviews page having this content",
+      feedback: "I want reviews page having this content",
       rating: 3.5,
     },
   ],
@@ -55,12 +55,21 @@ export default function StudentReviewsPage() {
   const currentReviews = tab === 0 ? reviewsData.received : reviewsData.given;
 
   return (
-    <Box sx={{ p: 4, minHeight: "100vh", bgcolor: "#f5f8ff",mt:2 }}>
-      <Typography variant="h4" fontWeight="bold" mb={2} color="primary.dark">
+    <Box sx={{ p: { xs: 2, sm: 3, md: 4 }, minHeight: "100vh", bgcolor: "#f5f8ff", mt: 2 }}>
+      <Typography variant="h4" fontWeight="bold" mb={2} color="primary.dark" textAlign={{ xs: 'center', md: 'left' }}>
         Reviews
       </Typography>
 
-      <Paper elevation={3} sx={{ borderRadius: 2, mb: 3,width:"50%",justifyContent:"center",alignItems:"center" ,}}>
+      {/* Tabs */}
+      <Paper
+        elevation={3}
+        sx={{
+          borderRadius: 2,
+          mb: 3,
+          width: { xs: "100%", sm: "60%", md: "50%" },
+          mx: "auto",
+        }}
+      >
         <Tabs
           value={tab}
           onChange={(e, newVal) => setTab(newVal)}
@@ -74,14 +83,16 @@ export default function StudentReviewsPage() {
       </Paper>
 
       {currentReviews.length === 0 ? (
-        <Typography color="text.secondary">No reviews found.</Typography>
+        <Typography color="text.secondary" textAlign="center">
+          No reviews found.
+        </Typography>
       ) : (
         currentReviews.map((review, index) => (
           <Box
             key={index}
             sx={{
               mb: 3,
-              p: 3,
+              p: { xs: 2, sm: 3 },
               borderRadius: 3,
               bgcolor: "#ffffff",
               boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
@@ -89,12 +100,12 @@ export default function StudentReviewsPage() {
           >
             <Grid container spacing={2} alignItems="flex-start">
               {/* Avatar */}
-              <Grid item xs={12} sm={1.5} display="flex" justifyContent="center">
+              <Grid item xs={12} sm={2} display="flex" justifyContent="center">
                 <Avatar
                   sx={{
                     bgcolor: "#1976d2",
-                    width: 60,
-                    height: 60,
+                    width: { xs: 50, sm: 60 },
+                    height: { xs: 50, sm: 60 },
                   }}
                 >
                   <RateReviewIcon fontSize="medium" />
@@ -102,7 +113,7 @@ export default function StudentReviewsPage() {
               </Grid>
 
               {/* Review Info */}
-              <Grid item xs={12} sm={10.5}>
+              <Grid item xs={12} sm={10}>
                 <Typography variant="h6" fontWeight="bold" color="primary.dark">
                   {review.student}
                 </Typography>

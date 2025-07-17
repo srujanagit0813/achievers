@@ -28,11 +28,11 @@ const renderStars = (rating) => {
   return (
     <Box display="flex" alignItems="center">
       {[...Array(fullStars)].map((_, index) => (
-        <Star key={index} sx={{ color: '#FFD700' }} fontSize="medium" />
+        <Star key={index} sx={{ color: '#FFD700' }} fontSize="small" />
       ))}
-      {hasHalfStar && <StarHalf sx={{ color: '#FFD700' }} fontSize="medium" />}
+      {hasHalfStar && <StarHalf sx={{ color: '#FFD700' }} fontSize="small" />}
       {[...Array(5 - Math.ceil(rating))].map((_, index) => (
-        <StarBorder key={index} sx={{ color: '#FFD700' }} fontSize="medium" />
+        <StarBorder key={index} sx={{ color: '#FFD700' }} fontSize="small" />
       ))}
     </Box>
   );
@@ -47,31 +47,32 @@ const StudentTotalFeedbacks = () => {
       elevation={4}
       sx={{
         borderRadius: 4,
-        p: 3,
+        p: { xs: 2, sm: 3 },
         mx: 'auto',
         width: '95%',
         mt: 4,
         boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
         bgcolor: '#fff',
-        marginLeft:"-1px"
       }}
     >
       {/* Header */}
       <Box
         display="flex"
+        flexDirection={{ xs: 'column', sm: 'row' }}
         justifyContent="space-between"
-        alignItems="center"
+        alignItems={{ xs: 'flex-start', sm: 'center' }}
         mb={3}
         p={2}
         sx={{
           borderRadius: 2,
           background: 'linear-gradient(to right, #6A0DAD, #8E2DE2)',
           color: 'white',
+          gap: { xs: 2, sm: 0 },
         }}
       >
         <Box display="flex" alignItems="center" gap={1}>
-          <Feedback sx={{ fontSize: 28 }} />
-          <Typography variant="h5" fontWeight="bold" letterSpacing={0.5}>
+          <Feedback sx={{ fontSize: { xs: 24, sm: 28 } }} />
+          <Typography variant="h6" fontWeight="bold" letterSpacing={0.5}>
             Total Feedbacks
           </Typography>
         </Box>
@@ -87,6 +88,7 @@ const StudentTotalFeedbacks = () => {
             fontWeight: 'bold',
             transition: 'all 0.3s ease',
             '&:hover': { backgroundColor: '#f3e5f5', transform: 'scale(1.05)' },
+            mt: { xs: 1, sm: 0 },
           }}
         >
           See More
@@ -101,9 +103,9 @@ const StudentTotalFeedbacks = () => {
               <TableCell
                 sx={{
                   fontWeight: 'bold',
-                  fontSize: '16px',
+                  fontSize: { xs: '14px', sm: '16px' },
                   color: '#333',
-                  paddingY: 2,
+                  paddingY: { xs: 1, sm: 2 },
                 }}
               >
                 Course Name
@@ -111,9 +113,9 @@ const StudentTotalFeedbacks = () => {
               <TableCell
                 sx={{
                   fontWeight: 'bold',
-                  fontSize: '16px',
+                  fontSize: { xs: '14px', sm: '16px' },
                   color: '#333',
-                  paddingY: 2,
+                  paddingY: { xs: 1, sm: 2 },
                 }}
               >
                 Total Enrolled
@@ -121,9 +123,9 @@ const StudentTotalFeedbacks = () => {
               <TableCell
                 sx={{
                   fontWeight: 'bold',
-                  fontSize: '16px',
+                  fontSize: { xs: '14px', sm: '16px' },
                   color: '#333',
-                  paddingY: 2,
+                  paddingY: { xs: 1, sm: 2 },
                 }}
               >
                 Ratings
@@ -143,10 +145,10 @@ const StudentTotalFeedbacks = () => {
               >
                 <TableCell
                   sx={{
-                    py: 2,
+                    py: { xs: 1, sm: 2 },
                     fontWeight: 600,
                     color: '#222',
-                    fontSize: '16px',
+                    fontSize: { xs: '14px', sm: '16px' },
                     fontFamily: 'Arial, sans-serif',
                   }}
                 >
@@ -154,15 +156,15 @@ const StudentTotalFeedbacks = () => {
                 </TableCell>
                 <TableCell
                   sx={{
-                    py: 2,
+                    py: { xs: 1, sm: 2 },
                     fontWeight: 700,
                     color: '#6A0DAD',
-                    fontSize: '15px',
+                    fontSize: { xs: '14px', sm: '15px' },
                   }}
                 >
                   {row.enrolled.toLocaleString()}
                 </TableCell>
-                <TableCell sx={{ py: 2 }}>{renderStars(row.rating)}</TableCell>
+                <TableCell sx={{ py: { xs: 1, sm: 2 } }}>{renderStars(row.rating)}</TableCell>
               </TableRow>
             ))}
           </TableBody>

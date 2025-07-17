@@ -1,61 +1,45 @@
-import React from "react";
-import { Box, Button, Avatar, Typography } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import StudentSidebar from './StudentSidebar';
+import { Box, useTheme, useMediaQuery } from '@mui/material';
+import StudentTopbarPage from './StudentTopbarPage';
 
-import StudentSidebar from "./StudentSidebar";
-import { Outlet } from "react-router-dom";
+const StudentDashboardLayout = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-
-// Layout will handle Header + Sidebar + Main
-function Layout({ children, role = "Instructor" }) {
   return (
-    <>
-      {/* Header Section */}
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '150vh',
+      
+     }}>
+      {/* Topbar at the top of the page */}
+      <StudentTopbarPage />
+
+      {/* Content Area with Sidebar and Main Section */}
       <Box
-        sx={{ bgcolor: "#6a1b9a", borderRadius: 3, p: 3, display:'flex',
-               alignItems:'center', justifyContent:'space-between',
-               flexWrap:'wrap', color:'white',width:"93%",marginLeft:"30px",marginTop:"5%"}}
+        sx={{
+          display: 'flex',
+          flex: 1,
+          mt: { xs: 0, sm: 0, md: -8 }, // Removed fixed -88 (use dynamic spacing)
+          flexDirection: { xs: 'column', md: 'row' },
+          // Sidebar stacks on mobile
+        }}
       >
-        <Box display="flex" alignItems="center">
-          <Avatar src="https://i.pravatar.cc/300" sx={{ width: 64, height: 64, mr: 2 }}/>
-          <Box>
-            <Typography variant="body1">Hello</Typography>
-            <Typography variant="h6" fontWeight="bold">
-              Michle Obema
-            </Typography>
-          </Box>
-        </Box>
-        <Box textAlign="center">
-          <Typography variant="body2">⭐⭐⭐⭐☆</Typography>
-          <Typography variant="body2">4.0 (120 Reviews)</Typography>
-        </Box>
-        <Button
-          variant="contained"
-          startIcon={<AddIcon />}
-          sx={{ bgcolor:'white', color:'#6a1b9a',
-                 '&:hover': { bgcolor:'#f3e5f5' },
-                 mt:{ xs: 2, sm: 0 }
-               }}
+        <StudentSidebar />
+
+        <Box
+          sx={{
+            flex: 1,
+            p: { xs: 1, sm: 2, md: 3 },
+            width: '100%',
+            
+          }}
         >
-          Create a New Course
-        </Button>
-      </Box>
-
-      {/* Main Section */}
-      <Box sx={{ p: 4, bgcolor: "#f4f4f9", minHeight:'100vh', display:'flex', gap:4 }}>
-        {/* Sidebar on the left */}
-        <Box sx={{ flex:'0 0 250px' }}>
-          <StudentSidebar role={role} />
-        </Box>
-
-        {/* Main content on the right */}
-        <Box sx={{ flex:'1',marginLeft:'5px' }}>
-          <Outlet/>
+          <Outlet />
         </Box>
       </Box>
-    
-    </>
-  )
-}
+    </Box>
+  );
+};
 
-export default Layout;
+export default StudentDashboardLayout;

@@ -40,7 +40,7 @@ import StudentCourseDashboard from "./components/Dashboards/StudentDashboard/Stu
 import StudentReviewsPage from "./components/Dashboards/StudentDashboard/StudentReviewsPage";
 import StudentQuizAttemptsPage from "./components/Dashboards/StudentDashboard/StudentQuizAttemptsPage";
 import StudentOrderHistoryPage from "./components/Dashboards/StudentDashboard/StudentOrderHistoryPage";
-import StudentAssignments from "./components/Dashboards/StudentDashboard/StudentAssignmentDetailsModal";
+import StudentAssignments from "./components/Dashboards/StudentDashboard/StudentAssignments";
 import StudentEnrolledCourses from './components/Dashboards/StudentDashboard/StudentEnrolledCourses';
 import StudentDashboardLayout from './components/Dashboards/StudentDashboard/StudentDashboardLayout';
 import InstructorDashboardPage from './components/Dashboards/InstructorDashboard/InstructorDashboardPage';

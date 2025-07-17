@@ -80,10 +80,12 @@ const coursesData = [
   },
 ];
 
+
+
 const categories = ["Enrolled Courses", "Active Courses", "Completed Courses"];
 
 const StudentEnrolledCourses = () => {
-  const [selectedTab, setSelectedTab] = useState(0); // Default to "Enrolled Courses"
+  const [selectedTab, setSelectedTab] = useState(0);
 
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue);
@@ -99,7 +101,7 @@ const StudentEnrolledCourses = () => {
         );
 
   return (
-    <Box p={5}>
+    <Box p={{ xs: 2, sm: 3, md: 5 }}>
       <Typography variant="h4" fontWeight="bold" mb={2}>
         {categories[selectedTab]}
       </Typography>
@@ -116,18 +118,17 @@ const StudentEnrolledCourses = () => {
         ))}
       </Tabs>
 
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         {filteredCourses.length > 0 ? (
           filteredCourses.map((course, index) => (
-            <Grid item xs={12} md={6} key={index}>
-              <Paper sx={{ p: 2, borderRadius: 2,width:"350px", }} elevation={4}>
+            <Grid item xs={12} sm={6} md={6} lg={4} key={index}>
+              <Paper sx={{ p: 2, borderRadius: 2 }} elevation={4}>
                 {/* ✅ Image with subject chip overlay */}
                 <Box
                   sx={{
                     position: "relative",
-                    width: "90%",
-                    height: 180,
-                    mx: "auto",
+                    width: "100%",
+                    height: { xs: 150, md: 180 },
                     mb: 1,
                     borderRadius: 1,
                     overflow: "hidden",
@@ -143,8 +144,6 @@ const StudentEnrolledCourses = () => {
                       objectFit: "cover",
                     }}
                   />
-
-                  {/* Overlay Chip */}
                   <Chip
                     label={course.subject}
                     sx={{
@@ -158,101 +157,90 @@ const StudentEnrolledCourses = () => {
                     }}
                   />
                 </Box>
-<Stack spacing={2}>
-  {/* Top row: Lessons and Duration in a horizontal row */}
-  <Stack direction="row" justifyContent="center" alignItems="center" spacing={20}>
-    <Typography variant="subtitle1" sx={{ml:8}}>
-      {course.lessons} Lessons
-    </Typography>
-    <Typography variant="subtitle1">• {course.duration}</Typography>
-  </Stack>
 
-  {/* Course Title */}
-  <Typography variant="h5" fontWeight="bold"  >
-    {course.title}
-  </Typography>
+                <Stack spacing={2}>
+                  {/* Lessons and Duration */}
+                  <Stack direction="row" justifyContent="space-between">
+                    <Typography variant="subtitle1">
+                      {course.lessons} Lessons
+                    </Typography>
+                    <Typography variant="subtitle1">{course.duration}</Typography>
+                  </Stack>
 
-  {/* Price */}
-<Stack direction="row" justifyContent="start" spacing={2} >
-  <Typography
-  sx={{
-    color: "#2e7d32",        // Custom green color (you can use any HEX or theme color)
-    fontSize: "1.1rem",      // Increase font size
-    fontWeight: "bold",      // Optional: make it bolder
-    textAlign: "center",     // Optional: center the text
-  }}
->
-  {course.price}
-</Typography>
+                  {/* Course Title */}
+                  <Typography variant="h6" fontWeight="bold">
+                    {course.title}
+                  </Typography>
 
-</Stack>
+                  {/* Price */}
+                  <Typography
+                    sx={{
+                      color: "#2e7d32",
+                      fontSize: "1.1rem",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {course.price}
+                  </Typography>
 
-  {/* Instructor Info */}
-  <Stack direction="row" alignItems="center" spacing={2}>
-    <Avatar>{course.instructor[0]}</Avatar>
-    <Typography>
-      {course.instructor} ({course.rating})
-    </Typography>
-  </Stack>
+                  {/* Instructor Info */}
+                  <Stack direction="row" alignItems="center" spacing={2}>
+                    <Avatar>{course.instructor[0]}</Avatar>
+                    <Typography>
+                      {course.instructor} ({course.rating})
+                    </Typography>
+                  </Stack>
 
-  {/* Progress Bar */}
- 
-<Box sx={{ position: "relative", width: "100%", mt: 1 }}>
-  <LinearProgress
-    variant="determinate"
-    value={course.progress}
-    sx={{
-      height: 30,
-      width:350,
-      borderRadius: 2,
-      backgroundColor: "#e0e0e0", // light gray background
-      "& .MuiLinearProgress-bar": {
-        backgroundColor: "#1976d2", // ✅ custom blue
-      },
-    }}
-  />
+                  {/* Progress Bar */}
+                  <Box sx={{ position: "relative", width: "100%", mt: 1 }}>
+                    <LinearProgress
+                      variant="determinate"
+                      value={course.progress}
+                      sx={{
+                        height: 20,
+                        borderRadius: 2,
+                        backgroundColor: "#e0e0e0",
+                        "& .MuiLinearProgress-bar": {
+                          backgroundColor: "#1976d2",
+                        },
+                      }}
+                    />
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        color: "#fff",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {course.progress}% Complete
+                    </Typography>
+                  </Box>
 
-  <Typography
-    variant="caption"
-    sx={{
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      color: "#fff",
-      fontWeight: "bold",
-      fontSize: "0.75rem",
-    }}
-  >
-    {course.progress}% Complete
-  </Typography>
-</Box>
-
-{course.progress === 100 && (
-  <Button
-    variant="outlined"
-    size="small"
-    startIcon={<DownloadIcon />}
-    sx={{
-      mt: 1,
-      backgroundColor: "#f8bbd0", // light pink
-      color: "#880e4f",            // deep pink text
-      borderColor: "#f48fb1",      // pink border
-      "&:hover": {
-        backgroundColor: "#f48fb1", // slightly darker on hover
-        borderColor: "#f06292",
-      },
-    }}
-  >
-    Download Certificate
-  </Button>
-)}
-
-
- 
-</Stack>
-
-                
+                  {/* Download Certificate */}
+                  {course.progress === 100 && (
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      startIcon={<DownloadIcon />}
+                      sx={{
+                        mt: 1,
+                        backgroundColor: "#f8bbd0",
+                        color: "#880e4f",
+                        borderColor: "#f48fb1",
+                        "&:hover": {
+                          backgroundColor: "#f48fb1",
+                          borderColor: "#f06292",
+                        },
+                      }}
+                    >
+                      Download Certificate
+                    </Button>
+                  )}
+                </Stack>
               </Paper>
             </Grid>
           ))

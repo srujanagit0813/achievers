@@ -41,9 +41,9 @@ const LoginForm = ({ onLoginSuccess }) => {
     try {
       let res;
       if (useOtp) {
-        res = await axios.post("http://localhost:5000/users/login-with-otp", {
+        res = await axios.post("http://localhost:5000/users/login/otp", {
           email,
-          code: otp,
+           otp,
         });
       } else {
         res = await axios.post("http://localhost:5000/users/login", {
@@ -54,8 +54,8 @@ const LoginForm = ({ onLoginSuccess }) => {
 
       setMessage(res.data.message || "Login successful");
       
-      if (onLoginSuccess) onLoginSuccess();  // Notify parent context
-      navigate("/");
+      if (onLoginSuccess) onLoginSuccess();  
+      navigate("/Landingpage");
 
     } catch (err) {
       setMessage(err.response?.data?.message || "Login failed");
@@ -102,7 +102,7 @@ const LoginForm = ({ onLoginSuccess }) => {
       )}
 
       <Box component="form" onSubmit={handleLogin}>
-        {/* Email */}
+       
         <TextField
           label="Email"
           placeholder="Enter your email"
@@ -121,7 +121,7 @@ const LoginForm = ({ onLoginSuccess }) => {
           }}
         />
 
-        {/* Password or OTP */}
+       
         {!useOtp ? (
           <TextField
             label="Password"

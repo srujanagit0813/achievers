@@ -8,12 +8,15 @@ import {
   Divider,
   Stack,
   IconButton,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 
 const instructors = [
   {
@@ -45,40 +48,40 @@ const courses = [
     instructor: 'Micle Jhon',
     lessons: 23,
     time: '1 hr 30 min',
-    image: "https://media.istockphoto.com/id/489934398/photo/students-playing-a-computer-game.jpg?s=612x612&w=0&k=20&c=DI8QCTW5MxrT8Lw3LJfb64qjdHnxNXEvTUFo3coanPA=",
+    image:"https://randomuser.me/api/portraits/women/34.jpg" ,
   },
   {
     title: 'Nidnies course to understand about software',
     instructor: 'Rinis Jhon',
     lessons: 29,
     time: '2 hr 10 min',
-    image: "https://media.istockphoto.com/id/1311230372/photo/high-school-students-in-computer-lab.jpg?s=612x612&w=0&k=20&c=h7Od7Wb6eGMJNkMm63ogJK2gQmV-PQyZQKH4kmvyvi4=",
+    image: "https://randomuser.me/api/portraits/women/34.jpg",
   },
   {
     title: 'Minws course to understand about solution',
     instructor: 'Jane Austen',
     lessons: 25,
     time: '1 hr 40 min',
-    image: "https://media.istockphoto.com/id/519546256/photo/using-digital-tablets-in-class.jpg?s=612x612&w=0&k=20&c=yUR6tVydZRaW88QKovhenG3lpP5I_C8nIdsWxVvy0Cc=",
+    image: "https://randomuser.me/api/portraits/women/34.jpg",
   },
 ];
 
 const InstructorCard = ({ name, reviews, students, courses, image }) => (
-  <Box display="flex" alignItems="center" py={2}>
+  <Box display="flex" alignItems="center" py={2} flexWrap="wrap">
     <Avatar src={image} sx={{ width: 64, height: 64, mr: 2 }} />
-    <Box>
+    <Box flex={1}>
       <Typography fontWeight="bold" variant="h6">{name}</Typography>
-      <Stack direction="row" spacing={2} mt={0.5} alignItems="center">
-        <Typography variant="body2">
-          <RateReviewIcon fontSize="small" sx={{ verticalAlign: 'middle', mr: 0.5 }} />
+      <Stack direction="row" spacing={1} mt={0.5} flexWrap="wrap">
+        <Typography variant="body2" display="flex" alignItems="center">
+          <RateReviewIcon fontSize="small" sx={{ mr: 0.5 }} />
           {reviews} Reviews
         </Typography>
-        <Typography variant="body2">
-          <PeopleIcon fontSize="small" sx={{ verticalAlign: 'middle', mr: 0.5 }} />
+        <Typography variant="body2" display="flex" alignItems="center">
+          <PeopleIcon fontSize="small" sx={{ mr: 0.5 }} />
           {students} Students
         </Typography>
-        <Typography variant="body2">
-          <MenuBookIcon fontSize="small" sx={{ verticalAlign: 'middle', mr: 0.5 }} />
+        <Typography variant="body2" display="flex" alignItems="center">
+          <MenuBookIcon fontSize="small" sx={{ mr: 0.5 }} />
           {courses} Courses
         </Typography>
       </Stack>
@@ -87,18 +90,22 @@ const InstructorCard = ({ name, reviews, students, courses, image }) => (
 );
 
 const CourseCard = ({ title, instructor, lessons, time, image }) => (
-  <Box display="flex" alignItems="center" py={2}>
-    <img src={image} alt={title} style={{ width: 100, height: 60, borderRadius: 8, marginRight: 16 }} />
-    <Box flexGrow={1}>
-      <Typography fontWeight="500" fontSize="0.95rem">{title}</Typography>
-      <Stack direction="row" spacing={2} mt={0.5}>
+  <Box display="flex" alignItems="center" py={2} flexWrap="wrap">
+    <Box sx={{ minWidth: 100, mr: 2 }}>
+      <img src={image} alt={title} style={{ width: '100px', height: '60px', borderRadius: 8 }} />
+    </Box>
+    <Box flex={1}>
+      <Typography fontWeight="500" fontSize="0.95rem" gutterBottom>
+        {title}
+      </Typography>
+      <Stack direction="row" spacing={1} mt={0.5} flexWrap="wrap">
         <Typography variant="body2" fontWeight="bold">{instructor}</Typography>
-        <Typography variant="body2">
-          <MenuBookIcon fontSize="small" sx={{ verticalAlign: 'middle', mr: 0.5 }} />
+        <Typography variant="body2" display="flex" alignItems="center">
+          <MenuBookIcon fontSize="small" sx={{ mr: 0.5 }} />
           {lessons} Lessons
         </Typography>
-        <Typography variant="body2">
-          <AccessTimeIcon fontSize="small" sx={{ verticalAlign: 'middle', mr: 0.5 }} />
+        <Typography variant="body2" display="flex" alignItems="center">
+          <AccessTimeIcon fontSize="small" sx={{ mr: 0.5 }} />
           {time}
         </Typography>
       </Stack>
@@ -107,12 +114,15 @@ const CourseCard = ({ title, instructor, lessons, time, image }) => (
 );
 
 const StudentDashboardSection = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
-    <Box p={3}>
+    <Box p={{ xs: 2, sm: 3, md: 4 }}>
       <Grid container spacing={3}>
         {/* Popular Instructor Section */}
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} sx={{ p: 2, borderRadius: 2 }}>
+          <Paper elevation={3} sx={{ p: { xs: 2, md: 3 }, borderRadius: 2 }}>
             <Box display="flex" justifyContent="space-between" alignItems="center">
               <Typography variant="h6" fontWeight="bold">Popular Instructors</Typography>
               <IconButton color="primary" size="small">
@@ -131,7 +141,7 @@ const StudentDashboardSection = () => {
 
         {/* Recent Course Section */}
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} sx={{ p: 2, borderRadius: 2 }}>
+          <Paper elevation={3} sx={{ p: { xs: 2, md: 3 }, borderRadius: 2 }}>
             <Box display="flex" justifyContent="space-between" alignItems="center">
               <Typography variant="h6" fontWeight="bold">Recent Courses</Typography>
               <IconButton color="primary" size="small">
